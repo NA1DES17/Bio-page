@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HeroSection from '@components/sections/HeroSection.astro';
+import ChecklistSection from '@components/sections/ChecklistSection.astro';
+import SymptomsSection from '@components/sections/SymptomsSection.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import FAQSection from '@components/sections/FAQSection.astro';
+import TestimonialSection from '@components/sections/TestimonialSection.astro';
+import ContactSection from '@components/sections/ContactSection.astro';
+import { HERO_SLIDES, FAQS_HOME } from '@data/content';
+import { buildFAQSchema } from '@utils/metadata';
+
+const hero = HERO_SLIDES[0];
+const testimonials = [
+  {
+    quote: 'Llegué con una ansiedad que me desbordaba. En las sesiones fui entendiendo el origen de lo que sentía y hoy tengo herramientas que me acompañan todos los días.',
+    author: 'Carolina M.',
+    subtitle: 'Buenos Aires, Argentina',
+  },
+  {
+    quote: 'Nunca imaginé que mis síntomas físicos tuvieran una raíz emocional. El acompañamiento fue un antes y un después en mi vida.',
+    author: 'Andrés P.',
+    subtitle: 'Córdoba, Argentina',
+  },
+  {
+    quote: 'El espacio seguro que crea Mariana permite que uno se suelte y realmente pueda conectar con lo que lleva adentro. Muy agradecida.',
+    author: 'Lucía R.',
+    subtitle: 'Santiago, Chile',
+  },
+];
+---
+
+<BaseLayout
+  title="Biodescodificación y Acompañamiento Emocional"
+  description="Alma en Calma ofrece sesiones de biodescodificación online en Argentina. Liberá bloqueos emocionales, saná tu ansiedad y recuperá tu bienestar."
+  currentPath="/"
+  breadcrumbs={[{ label: 'Inicio', path: '/' }]}
+  schema={[
+    buildFAQSchema(FAQS_HOME),
+  ]}
+>
+  <HeroSection
+    title={hero.title}
+    subtitle={hero.subtitle}
+    cta={hero.cta}
+    secondaryCta={hero.secondaryCta}
+  />
+
+  <ChecklistSection />
+
+  <SymptomsSection />
+
+  <CTASection
+    eyebrow="Primer paso"
+    title="Tu proceso de sanación comienza hoy"
+    subtitle="Agendá una sesión online y empezá a descubrir el origen emocional de lo que sentís."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+  />
+
+  <TestimonialSection
+    eyebrow="Testimonios"
+    title="Historias de transformación"
+    subtitle="Personas que ya iniciaron su camino de sanación."
+    testimonials={testimonials}
+  />
+
+  <FAQSection
+    eyebrow="FAQ terapéutico"
+    title="Diferenciación y complemento"
+    subtitle="Respuestas claras sobre qué es, qué no es, y cómo se integra con otros abordajes."
+    faqs={FAQS_HOME}
+  />
+
+  <ContactSection
+    eyebrow="Contacto"
+    title="Escribime y conversamos"
+    subtitle="Respondo todas tus dudas sin compromiso. Estoy acá para acompañarte."
+  />
+</BaseLayout>

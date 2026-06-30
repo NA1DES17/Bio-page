@@ -1,0 +1,106 @@
+---
+import { SITE } from '@config/site';
+import { FOOTER_NAV, LEGAL_LINKS } from '@config/navigation';
+import { SITE_SETTINGS } from '@data/settings';
+import Container from '@components/ui/Container.astro';
+import Icon from '@components/ui/Icon.astro';
+
+const footer = SITE_SETTINGS.footer;
+---
+
+<footer class="border-t border-surface-container bg-surface-dim">
+  <Container>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16">
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="/" class="inline-flex items-center gap-2 text-lg font-heading text-on-surface mb-4">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true" class="text-primary">
+            <path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2z" fill="currentColor" opacity="0.2"/>
+            <path d="M14 6c-1.5 2.5-4 4-4 7 0 3.314 2.686 6 6 6s6-2.686 6-6c0-3-2.5-4.5-4-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          {SITE.name}
+        </a>
+        <p class="text-sm text-on-surface-variant leading-relaxed max-w-xs">
+          {footer.tagline}
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h3 class="eyebrow mb-4">Navegación</h3>
+        <ul class="space-y-3" role="list">
+          {FOOTER_NAV.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm text-on-surface-variant hover:text-primary transition-colors"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="eyebrow mb-4">Contacto</h3>
+        <ul class="space-y-3" role="list">
+          <li>
+            <a
+              href={`https://wa.me/${SITE.authorPhone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(SITE_SETTINGS.whatsapp.message)}`}
+              class="inline-flex items-center gap-2 text-sm text-on-surface-variant hover:text-secondary transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="whatsapp" size="sm" />
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${SITE.authorEmail}`}
+              class="inline-flex items-center gap-2 text-sm text-on-surface-variant hover:text-primary transition-colors"
+            >
+              <Icon name="mail" size="sm" />
+              {SITE.authorEmail}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`https://instagram.com/${SITE.social.instagram.replace('@', '')}`}
+              class="inline-flex items-center gap-2 text-sm text-on-surface-variant hover:text-tertiary transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="instagram" size="sm" />
+              {SITE.social.instagram}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="eyebrow mb-4">Legal</h3>
+        <ul class="space-y-3" role="list">
+          {LEGAL_LINKS.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm text-on-surface-variant hover:text-primary transition-colors"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-surface-container">
+      <p class="text-xs text-on-surface-variant">{footer.copyright}</p>
+    </div>
+  </Container>
+</footer>

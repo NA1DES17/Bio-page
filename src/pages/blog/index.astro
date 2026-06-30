@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import BaseCard from '@components/ui/Card.astro';
+import { SITE } from '@config/site';
+
+const blogPosts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.publishedDate).getTime() -
+      new Date(a.data.publishedDate).getTime(),
+  );
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Blog', path: '/blog' },
+];
+---
+
+<BaseLayout
+  title="Blog de Bienestar Emocional y Biodescodificación"
+  description="Artículos sobre biodescodificación, manejo de ansiedad, sanación emocional y bienestar. Contenido para tu crecimiento personal."
+  currentPath="/blog"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Blog</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-4">
+        Blog de bienestar emocional
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed max-w-2xl">
+        Artículos, guías y reflexiones sobre biodescodificación, manejo de ansiedad,
+        sanación emocional y bienestar integral.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-page">
+      {blogPosts.length > 0 ? (
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post) => (
+            <article>
+              <a href={`/blog/${post.slug}`} class="group block">
+                <BaseCard>
+                  <time
+                    datetime={post.data.publishedDate.toISOString()}
+                    class="text-xs text-on-surface-variant"
+                  >
+                    {new Intl.DateTimeFormat('es-AR', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    }).format(post.data.publishedDate)}
+                  </time>
+                  <h2 class="mt-3 text-lg font-heading text-on-surface group-hover:text-primary transition-colors">
+                    {post.data.title}
+                  </h2>
+                  <p class="mt-2 text-sm text-on-surface-variant line-clamp-3">
+                    {post.data.description}
+                  </p>
+                  {post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mt-4">
+                      {post.data.tags.map((tag) => (
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </BaseCard>
+              </a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20">
+          <p class="text-on-surface-variant text-lg">Próximamente nuevos artículos</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

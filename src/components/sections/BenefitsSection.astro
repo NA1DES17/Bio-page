@@ -1,0 +1,57 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionTitle from '@components/ui/SectionTitle.astro';
+import Card from '@components/ui/Card.astro';
+import Icon from '@components/ui/Icon.astro';
+import { getButtonClasses } from '@components/ui/Button.tsx';
+
+interface Benefit {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  benefits: Benefit[];
+  cta?: { label: string; href: string };
+  columns?: 2 | 3 | 4;
+}
+---
+
+<section class="section-padding">
+  <Container>
+    <SectionTitle eyebrow={Astro.props.eyebrow} title={Astro.props.title} subtitle={Astro.props.subtitle} />
+
+    <div
+      class:list={[
+        'mt-12 grid gap-6 sm:gap-8',
+        Astro.props.columns === 2 ? 'grid-cols-1 sm:grid-cols-2' : '',
+        Astro.props.columns === 3 || !Astro.props.columns ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : '',
+        Astro.props.columns === 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : '',
+      ]}
+    >
+      {Astro.props.benefits.map((benefit) => (
+        <Card>
+          <div class="flex flex-col items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+              <Icon name={benefit.icon} />
+            </div>
+            <h3 class="text-lg font-heading">{benefit.title}</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">{benefit.description}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    {Astro.props.cta && (
+      <div class="mt-12 text-center">
+        <a href={Astro.props.cta.href} class={getButtonClasses({ variant: 'primary' })}>
+          {Astro.props.cta.label}
+        </a>
+      </div>
+    )}
+  </Container>
+</section>

@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #f8fbf1;
+  --color-surface-dim: #d8dbd2;
+  --color-surface-bright: #f8fbf1;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f5eb;
+  --color-surface-container: #ecefe5;
+  --color-surface-container-high: #e6e9e0;
+  --color-surface-container-highest: #e1e4da;
+  --color-on-surface: #191d17;
+  --color-on-surface-variant: #44483f;
+  --color-inverse-surface: #2e322b;
+  --color-inverse-on-surface: #eff2e8;
+  --color-outline: #74786e;
+  --color-outline-variant: #c4c8bc;
+  --color-surface-tint: #4f653f;
+  --color-primary: #4f653f;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #adc698;
+  --color-on-primary-container: #3e532f;
+  --color-inverse-primary: #b5cea0;
+  --color-secondary: #a03f30;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fe8672;
+  --color-on-secondary-container: #741f13;
+  --color-tertiary: #77536c;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #deb1ce;
+  --color-on-tertiary-container: #64425a;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #d1ebba;
+  --color-primary-fixed-dim: #b5cea0;
+  --color-on-primary-fixed: #0d2003;
+  --color-on-primary-fixed-variant: #384d29;
+  --color-secondary-fixed: #ffdad4;
+  --color-secondary-fixed-dim: #ffb4a7;
+  --color-on-secondary-fixed: #400200;
+  --color-on-secondary-fixed-variant: #80281b;
+  --color-tertiary-fixed: #ffd7f0;
+  --color-tertiary-fixed-dim: #e6bad6;
+  --color-on-tertiary-fixed: #2d1127;
+  --color-on-tertiary-fixed-variant: #5e3c54;
+  --color-background: #f8fbf1;
+  --color-on-background: #191d17;
+  --color-surface-variant: #e1e4da;
+
+  --font-heading: "Libre Caslon Text", serif;
+  --font-body: "Manrope", sans-serif;
+
+  --spacing-gutter: 24px;
+  --spacing-section: 120px;
+  --spacing-section-mobile: 64px;
+  --spacing-margin-mobile: 20px;
+  --spacing-margin-desktop: 80px;
+
+  --radius-sm: 0.25rem;
+  --radius-default: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --container-max: 1200px;
+  --container-narrow: 720px;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface text-on-surface font-body;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply font-normal leading-tight;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-on-primary;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .section-padding {
+    padding-block: var(--spacing-section);
+  }
+
+  @media (max-width: 768px) {
+    .section-padding {
+      padding-block: var(--spacing-section-mobile);
+    }
+  }
+
+  .container-page {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--spacing-margin-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: var(--spacing-margin-desktop);
+    }
+  }
+
+  .container-narrow {
+    max-width: var(--container-narrow);
+    margin-inline: auto;
+    padding-inline: var(--spacing-margin-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .container-narrow {
+      padding-inline: var(--spacing-margin-desktop);
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    @apply text-secondary;
+  }
+
+  .prose-serif {
+    font-family: var(--font-heading);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary-fixed-dim bg-clip-text text-transparent;
+  }
+}

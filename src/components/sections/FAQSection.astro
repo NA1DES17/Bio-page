@@ -1,0 +1,71 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionTitle from '@components/ui/SectionTitle.astro';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  faqs: FAQItem[];
+}
+---
+
+<section class="section-padding" aria-label="Preguntas frecuentes">
+  <Container width="narrow">
+    <SectionTitle eyebrow={Astro.props.eyebrow} title={Astro.props.title} subtitle={Astro.props.subtitle} />
+
+    <dl class="mt-12 divide-y divide-surface-container">
+      {Astro.props.faqs.map((faq) => (
+        <div class="py-5 first:pt-0 last:pb-0">
+          <dt>
+            <button
+              class="flex items-center justify-between w-full text-left gap-4 py-1 group"
+              aria-expanded="false"
+              data-faq-toggle
+            >
+              <span class="text-base sm:text-lg font-heading text-on-surface group-hover:text-primary transition-colors">
+                {faq.question}
+              </span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                class="shrink-0 text-on-surface-variant transition-transform duration-300"
+                data-faq-icon
+              >
+                <path d="M10 4v12M4 10h12" />
+              </svg>
+            </button>
+          </dt>
+          <dd class="mt-3 pr-12 text-sm text-on-surface-variant leading-relaxed hidden" data-faq-answer>
+            <p>{faq.answer}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</section>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('[data-faq-toggle]');
+    if (!toggle) return;
+
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    const answer = toggle.closest('div').querySelector('[data-faq-answer]');
+    const icon = toggle.querySelector('[data-faq-icon]');
+
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    answer.classList.toggle('hidden');
+    icon.classList.toggle('rotate-45');
+  });
+</script>

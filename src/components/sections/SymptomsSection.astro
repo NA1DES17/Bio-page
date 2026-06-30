@@ -1,0 +1,73 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionTitle from '@components/ui/SectionTitle.astro';
+import Card from '@components/ui/Card.astro';
+import { SYMPTOMS } from '@data/symptoms';
+---
+
+<section class="section-padding bg-surface-container-low">
+  <Container>
+    <SectionTitle
+      eyebrow="Síntomas que tratamos"
+      title="¿Con cuál de estas señales te identificás?"
+      subtitle="Cada síntoma es una forma que tiene tu cuerpo de decirte algo. No estás sola/o en esto."
+    />
+
+    <!-- Mobile: Swiper -->
+    <div class="mt-8 sm:hidden" data-symptoms-swiper>
+      <div class="swiper-wrapper">
+        {SYMPTOMS.map((symptom) => (
+          <div class="swiper-slide h-auto">
+            <Card class="h-full">
+              <div class="flex flex-col gap-3">
+                <span class="w-8 h-1 rounded-full bg-secondary" aria-hidden="true" />
+                <h3 class="text-lg font-heading text-on-surface">{symptom.title}</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">{symptom.description}</p>
+              </div>
+            </Card>
+          </div>
+        ))}
+      </div>
+      <div class="flex justify-center gap-2 mt-6" data-symptoms-pagination></div>
+    </div>
+
+    <!-- Desktop: Grid -->
+    <div class="hidden sm:grid mt-12 gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      {SYMPTOMS.map((symptom) => (
+        <Card>
+          <div class="flex flex-col gap-3">
+            <span class="w-8 h-1 rounded-full bg-secondary" aria-hidden="true" />
+            <h3 class="text-lg font-heading text-on-surface">{symptom.title}</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">{symptom.description}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import 'swiper/css';
+
+  const el = document.querySelector('[data-symptoms-swiper]');
+  const isMobile = window.matchMedia('(max-width: 639px)');
+
+  function initSwiper() {
+    if (el && isMobile.matches && !el.swiper) {
+      new Swiper(el, {
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        centeredSlides: false,
+        pagination: {
+          el: '[data-symptoms-pagination]',
+          clickable: true,
+          renderBullet: (_, className) => `<span class="${className} w-2 h-2 rounded-full bg-surface-variant transition-colors duration-200 [&.swiper-pagination-bullet-active]:bg-primary"></span>`,
+        },
+      });
+    }
+  }
+
+  initSwiper();
+  isMobile.addEventListener('change', initSwiper);
+</script>

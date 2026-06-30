@@ -1,0 +1,40 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionTitle from '@components/ui/SectionTitle.astro';
+import { getButtonClasses } from '@components/ui/Button.tsx';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  cta: { label: string; href: string };
+  variant?: 'default' | 'accent';
+}
+---
+
+<section
+  class:list={[
+    'section-padding',
+    Astro.props.variant === 'accent' ? 'bg-surface-container-low' : '',
+  ]}
+>
+  <Container>
+    <div class="text-center max-w-2xl mx-auto">
+      <SectionTitle
+        eyebrow={Astro.props.eyebrow}
+        title={Astro.props.title}
+        subtitle={Astro.props.subtitle}
+      />
+      <div class="mt-8">
+        <a
+          href={Astro.props.cta.href}
+          class={getButtonClasses({ variant: 'primary', size: 'lg' })}
+        >
+          {Astro.props.cta.label}
+          <Icon name="arrow-right" size="sm" />
+        </a>
+      </div>
+    </div>
+  </Container>
+</section>

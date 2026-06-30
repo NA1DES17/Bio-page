@@ -1,0 +1,23 @@
+---
+import { cn } from '@utils/cn';
+
+export interface Props {
+  as?: 'div' | 'section' | 'article' | 'header' | 'footer';
+  width?: 'full' | 'default' | 'narrow';
+  class?: string;
+  id?: string;
+  children?: import('astro/types').RenderTemplateResult;
+}
+
+const { as: Tag = 'div', width = 'default', class: className, id } = Astro.props;
+
+const widthClasses: Record<string, string> = {
+  full: 'w-full',
+  default: 'container-page',
+  narrow: 'container-narrow',
+};
+---
+
+<Tag id={id} class:list={[cn(widthClasses[width], className)]}>
+  <slot />
+</Tag>

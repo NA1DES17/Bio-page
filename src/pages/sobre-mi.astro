@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import { PRACTITIONER } from '@data/about';
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Sobre mí', path: '/sobre-mi' },
+];
+---
+
+<BaseLayout
+  title="Sobre Mí — Alma en Calma"
+  description="Conocé a Mariana, facilitadora en biodescodificación y acompañante terapéutica. Descubrí su enfoque, formación y compromiso con tu bienestar emocional."
+  currentPath="/sobre-mi"
+  openGraph={{
+    title: 'Sobre Mí — Alma en Calma',
+    description: 'Conocé a Mariana, facilitadora en biodescodificación. Su enfoque, formación y compromiso con tu bienestar emocional.',
+  }}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Sobre mí</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
+        {PRACTITIONER.name}
+      </h1>
+      <p class="text-lg text-on-surface-variant whitespace-pre-line leading-relaxed">
+        {PRACTITIONER.title}
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="grid lg:grid-cols-5 gap-12 items-start">
+        <div class="lg:col-span-2 aspect-[3/4] rounded-xl bg-surface-container-high flex items-center justify-center">
+          <span class="text-on-surface-variant text-sm">Foto de {PRACTITIONER.name}</span>
+        </div>
+
+        <div class="lg:col-span-3 space-y-5 text-base text-on-surface-variant leading-relaxed">
+          {PRACTITIONER.longBio.map((p) => (
+            <p>{p}</p>
+          ))}
+
+          <h2 class="text-xl font-heading text-on-surface pt-4">Formación</h2>
+          <ul class="space-y-3">
+            {PRACTITIONER.credentials.map((cred) => (
+              <li class="flex items-start gap-3">
+                <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                <span>{cred}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-surface-container-low">
+    <div class="container-narrow">
+      <h2 class="text-2xl font-heading text-on-surface text-center mb-12">Mi enfoque de acompañamiento</h2>
+      <div class="grid gap-8 sm:grid-cols-3">
+        {PRACTITIONER.approach.map((item) => (
+          <div class="text-center">
+            <h3 class="text-lg font-heading text-on-surface mb-3">{item.title}</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="¿Querés que trabajemos juntos?"
+    subtitle="Agendá una sesión y empecemos este camino de sanación."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+  />
+</BaseLayout>

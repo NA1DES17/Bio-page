@@ -1,0 +1,52 @@
+---
+import Container from '@components/ui/Container.astro';
+import Icon from '@components/ui/Icon.astro';
+import { getButtonClasses } from '@components/ui/Button.tsx';
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  cta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
+---
+
+<section class="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24">
+  <!-- Background ornament -->
+  <div
+    class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
+    aria-hidden="true"
+  />
+  <div
+    class="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-tertiary/5 blur-3xl"
+    aria-hidden="true"
+  />
+
+  <Container>
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="eyebrow mb-6 animate-fade-in">Alma en Calma</p>
+      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-heading leading-[1.1] tracking-tight text-balance animate-fade-in-up">
+        {Astro.props.title}
+      </h1>
+      <p class="mt-4 text-base sm:text-lg font-light italic text-on-surface-variant/70 animate-fade-in-up">
+        {Astro.props.subtitle}
+      </p>
+
+      {(Astro.props.cta || Astro.props.secondaryCta) && (
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
+          {Astro.props.cta && (
+            <a href={Astro.props.cta.href} class={getButtonClasses({ variant: 'primary', size: 'lg' })}>
+              {Astro.props.cta.label}
+              <Icon name="arrow-right" size="sm" />
+            </a>
+          )}
+          {Astro.props.secondaryCta && (
+            <a href={Astro.props.secondaryCta.href} class={getButtonClasses({ variant: 'ghost', size: 'lg' })}>
+              {Astro.props.secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </Container>
+</section>

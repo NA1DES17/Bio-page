@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Container from '@components/ui/Container.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Blog', path: '/blog' },
+  { label: post.data.title, path: `/blog/${post.id.replace(/\.(md|mdx)$/, '')}` },
+];
+---
+
+<BaseLayout
+  title={`${post.data.title} — Blog Alma en Calma`}
+  description={post.data.description}
+  currentPath={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}
+  openGraph={{
+    title: post.data.title,
+    description: post.data.description,
+    ogType: 'article',
+    publishedTime: post.data.publishedDate.toISOString(),
+    modifiedTime: post.data.updatedDate?.toISOString(),
+  }}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="section-padding pb-0">
+    <Container width="narrow">
+      <p class="eyebrow mb-4">{post.data.category}</p>
+      <h1 class="text-[clamp(1.75rem,5vw,2.75rem)] font-heading leading-tight text-balance mb-4">
+        {post.data.title}
+      </h1>
+      <div class="flex items-center gap-4 text-sm text-on-surface-variant mb-8">
+        <time datetime={post.data.publishedDate.toISOString()}>
+          {new Intl.DateTimeFormat('es-AR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }).format(post.data.publishedDate)}
+        </time>
+        <span aria-hidden="true">·</span>
+        <span>{post.data.author}</span>
+      </div>
+    </Container>
+  </article>
+
+  <section class="section-padding">
+    <Container width="narrow">
+      <div class="prose-custom">
+        <Content />
+      </div>
+    </Container>
+  </section>
+
+  <CTASection
+    title="¿Te resonó este artículo?"
+    subtitle="Si querés profundizar en tu proceso de sanación, te invito a una sesión online."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+    variant="accent"
+  />
+</BaseLayout>

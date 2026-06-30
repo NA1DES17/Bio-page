@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import FAQSection from '@components/sections/FAQSection.astro';
+import { FAQS_BIODESCODIFICACION } from '@data/content';
+import { buildFAQSchema, buildArticleSchema } from '@utils/metadata';
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Biodescodificación', path: '/biodescodificacion/que-es' },
+];
+---
+
+<BaseLayout
+  title="¿Qué es la Biodescodificación? Guía Completa para Entender tus Emociones"
+  description="Descubrí qué es la biodescodificación, cómo funciona, para qué sirve y cómo puede ayudarte a liberar bloqueos emocionales. Guía completa para principiantes."
+  currentPath="/biodescodificacion/que-es"
+  canonical="/biodescodificacion/que-es"
+  openGraph={{
+    title: "¿Qué es la Biodescodificación? Guía Completa",
+    description: "Descubrí qué es la biodescodificación, cómo funciona y para qué sirve. Una guía completa para entender el lenguaje de tus emociones.",
+    ogType: 'article',
+    publishedTime: '2026-05-20',
+  }}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    buildFAQSchema(FAQS_BIODESCODIFICACION),
+    buildArticleSchema({
+      headline: '¿Qué es la Biodescodificación? Guía Completa para Entender tus Emociones',
+      description: 'Guía completa sobre biodescodificación: qué es, cómo funciona, principios fundamentales y cómo puede ayudarte a liberar bloqueos emocionales.',
+      datePublished: '2026-05-20',
+    }),
+  ]}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Guía Completa</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
+        ¿Qué es la biodescodificación?
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed">
+        Una mirada profunda a esta disciplina que conecta tus emociones con tu bienestar físico y mental.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="space-y-6 text-base sm:text-lg text-on-surface-variant leading-relaxed">
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">Origen y fundamentos</h2>
+        <p>
+          La biodescodificación surge de la premisa de que <strong class="text-on-surface">todo síntoma físico tiene un origen emocional</strong>.
+          Detrás de una alergia, un dolor de espalda, una gastritis o un ataque de ansiedad, hay un conflicto
+          emocional no resuelto que el cuerpo está expresando.
+        </p>
+        <p>
+          Este enfoque se apoya en disciplinas como la psiconeuroinmunología, que estudia cómo las emociones
+          afectan nuestro sistema nervioso, endocrino e inmunológico. También bebe de la epigenética, que
+          demuestra que nuestro entorno y nuestras experiencias pueden activar o silenciar genes.
+        </p>
+
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">¿Cómo funciona?</h2>
+        <p>
+          En una sesión de biodescodificación, trabajamos juntos para identificar el conflicto emocional
+          que está detrás de tu síntoma. No se trata de etiquetar ni de juzgar, sino de entender la historia
+          que hay detrás de cada emoción.
+        </p>
+        <p>
+          El proceso consiste en rastrear el origen del conflicto, comprender cómo se activó y encontrar
+          una nueva forma de relacionarse con esa experiencia. Al liberar la carga emocional, el síntoma
+          pierde su razón de ser.
+        </p>
+
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">Principios fundamentales</h2>
+        <ul class="space-y-4 list-none">
+          <li class="flex gap-3">
+            <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" />
+            <span><strong class="text-on-surface">El síntoma es un mensaje:</strong> tu cuerpo te habla a través de señales. La biodescodificación te ayuda a interpretarlas.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" />
+            <span><strong class="text-on-surface">Todo conflicto tiene una solución:</strong> no importa cuánto tiempo haya pasado, siempre hay una nueva forma de mirar la situación.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" />
+            <span><strong class="text-on-surface">La sanación es un proceso activo:</strong> no se trata de que alguien más te sane, sino de que descubras tu propio poder de sanación.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true" />
+            <span><strong class="text-on-surface">Cuerpo y mente son uno:</strong> no hay separación entre lo que sentís emocionalmente y lo que experimentás físicamente.</span>
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">¿Para qué sirve?</h2>
+        <p>
+          La biodescodificación se utiliza para abordar una amplia variedad de situaciones:
+        </p>
+        <ul class="space-y-2 list-none">
+          <li class="flex gap-3"><span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />Ansiedad, estrés y ataques de pánico</li>
+          <li class="flex gap-3"><span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />Dolores crónicos sin causa médica aparente</li>
+          <li class="flex gap-3"><span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />Problemas digestivos recurrentes</li>
+          <li class="flex gap-3"><span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />Bloqueos emocionales y patrones repetitivos</li>
+          <li class="flex gap-3"><span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />Duelos y pérdidas no elaboradas</li>
+          <li class="flex gap-3"><span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true" />Fobias y miedos limitantes</li>
+        </ul>
+
+        <div class="mt-12 p-6 rounded-default bg-surface-container border border-surface-container-high">
+          <p class="font-semibold text-on-surface mb-2">Importante</p>
+          <p class="text-sm">
+            La biodescodificación es una disciplina complementaria. No reemplaza tratamientos médicos ni
+            psicológicos, sino que ofrece una mirada adicional para abordar el bienestar integral de la persona.
+            Siempre recomendamos mantener tus controles médicos y tratamientos en curso.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="¿Lista/o para tu proceso?"
+    title="Empezá tu viaje de sanación"
+    subtitle="Agendá una sesión online y descubrí el mensaje que tu cuerpo tiene para vos."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+    variant="accent"
+  />
+
+  <FAQSection
+    eyebrow="FAQ"
+    title="Preguntas frecuentes sobre biodescodificación"
+    faqs={FAQS_BIODESCODIFICACION}
+  />
+</BaseLayout>

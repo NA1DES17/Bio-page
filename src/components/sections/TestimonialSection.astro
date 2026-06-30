@@ -1,0 +1,43 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionTitle from '@components/ui/SectionTitle.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  subtitle?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  testimonials: Testimonial[];
+}
+---
+
+<section class="section-padding bg-surface-container-low">
+  <Container>
+    <SectionTitle eyebrow={Astro.props.eyebrow} title={Astro.props.title} subtitle={Astro.props.subtitle} />
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {Astro.props.testimonials.map((t) => (
+        <blockquote class="relative p-6 sm:p-8 rounded-default bg-surface-container border border-surface-container-high">
+          <div class="absolute top-4 right-4 text-primary/20">
+            <Icon name="quote" size="lg" />
+          </div>
+          <p class="text-sm sm:text-base text-on-surface leading-relaxed italic mb-6">
+            "{t.quote}"
+          </p>
+          <footer>
+            <cite class="not-italic">
+              <span class="block text-sm font-semibold text-on-surface">{t.author}</span>
+              {t.subtitle && <span class="block text-xs text-on-surface-variant mt-0.5">{t.subtitle}</span>}
+            </cite>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </Container>
+</section>

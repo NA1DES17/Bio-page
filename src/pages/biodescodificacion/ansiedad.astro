@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import { buildArticleSchema } from '@utils/metadata';
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Biodescodificación', path: '/biodescodificacion/que-es' },
+  { label: 'Biodescodificación para la ansiedad', path: '/biodescodificacion/ansiedad' },
+];
+---
+
+<BaseLayout
+  title="Biodescodificación para la Ansiedad: Origen Emocional y Sanación"
+  description="Descubrí cómo la biodescodificación aborda la ansiedad desde su origen emocional. Encontrá alivio comprendiendo el mensaje de tu cuerpo."
+  currentPath="/biodescodificacion/ansiedad"
+  canonical="/biodescodificacion/ansiedad"
+  openGraph={{
+    title: 'Biodescodificación para la Ansiedad',
+    description: 'Descubrí cómo la biodescodificación aborda la ansiedad desde su origen emocional.',
+    ogType: 'article',
+    publishedTime: '2026-05-20',
+  }}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    buildArticleSchema({
+      headline: 'Biodescodificación para la Ansiedad: Origen Emocional y Sanación',
+      description: 'Guía sobre cómo la biodescodificación aborda la ansiedad desde su raíz emocional, identificando conflictos y ofreciendo caminos de sanación.',
+      datePublished: '2026-05-20',
+    }),
+  ]}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Biodescodificación para la ansiedad</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
+        Ansiedad y biodescodificación: entendé el mensaje de tu cuerpo
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed">
+        La ansiedad no aparece por casualidad. Hay una historia, un conflicto no resuelto, una emoción
+        que busca ser escuchada. La biodescodificación te ayuda a encontrar ese origen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="space-y-6 text-base sm:text-lg text-on-surface-variant leading-relaxed">
+
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">¿Qué hay detrás de la ansiedad?</h2>
+        <p>
+          Desde la mirada de la biodescodificación, la ansiedad es la manifestación de un conflicto emocional
+          que no ha encontrado resolución. Es como una alarma que suena constantemente porque hay un peligro
+          —real o percibido— que no ha sido procesado.
+        </p>
+        <p>
+          Puede estar relacionada con <strong class="text-on-surface">conflictos de separación</strong>,
+          <strong class="text-on-surface">miedo a perder el control</strong>,
+          <strong class="text-on-surface">falta de seguridad</strong> o
+          <strong class="text-on-surface">situaciones vividas en la infancia</strong>
+          que quedaron grabadas en tu sistema nervioso.
+        </p>
+
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">Síntomas comunes y su posible origen emocional</h2>
+
+        <div class="grid gap-4 sm:grid-cols-2 mt-6">
+          <div class="p-5 rounded-default bg-surface-container border border-surface-container-high">
+            <h3 class="font-semibold text-on-surface mb-2">Opresión en el pecho</h3>
+            <p class="text-sm">Puede relacionarse con una situación que "aprieta" emocionalmente, algo que no podés expresar o que te está sofocando.</p>
+          </div>
+          <div class="p-5 rounded-default bg-surface-container border border-surface-container-high">
+            <h3 class="font-semibold text-on-surface mb-2">Nudo en la garganta</h3>
+            <p class="text-sm">Vinculado a algo que "no podés tragar" emocionalmente o que no te animás a decir.</p>
+          </div>
+          <div class="p-5 rounded-default bg-surface-container border border-surface-container-high">
+            <h3 class="font-semibold text-on-surface mb-2">Taquicardia</h3>
+            <p class="text-sm">El corazón acelerado puede reflejar una situación que "corre" en tu vida, una urgencia emocional no atendida.</p>
+          </div>
+          <div class="p-5 rounded-default bg-surface-container border border-surface-container-high">
+            <h3 class="font-semibold text-on-surface mb-2">Pensamientos recurrentes</h3>
+            <p class="text-sm">Tu mente intenta resolver algo que no encuentra solución. Es una búsqueda constante de respuesta.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">¿Cómo trabaja la biodescodificación con la ansiedad?</h2>
+        <ol class="space-y-6 list-none">
+          <li class="flex gap-4">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-heading text-sm">1</span>
+            <div>
+              <h3 class="font-semibold text-on-surface">Identificación del conflicto</h3>
+              <p class="text-sm mt-1">Exploramos cuándo comenzó la ansiedad, qué estaba pasando en tu vida en ese momento, y cuál puede ser el conflicto emocional detrás.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-heading text-sm">2</span>
+            <div>
+              <h3 class="font-semibold text-on-surface">Comprensión del origen</h3>
+              <p class="text-sm mt-1">Entendemos la historia que hay detrás del síntoma. No se trata de eliminar la ansiedad, sino de entender qué te está queriendo decir.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-heading text-sm">3</span>
+            <div>
+              <h3 class="font-semibold text-on-surface">Liberación emocional</h3>
+              <p class="text-sm mt-1">A través de la palabra y la toma de conciencia, liberamos la carga emocional asociada al conflicto original.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-heading text-sm">4</span>
+            <div>
+              <h3 class="font-semibold text-on-surface">Integración y herramientas</h3>
+              <p class="text-sm mt-1">Te llevás recursos prácticos para seguir tu proceso y herramientas para gestionar la ansiedad en tu día a día.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="mt-12 p-6 rounded-default bg-surface-container border border-surface-container-high">
+          <p class="font-semibold text-on-surface mb-2">🔍 ¿Te resuena?</p>
+          <p class="text-sm">
+            Si sentís que la ansiedad está afectando tu calidad de vida y querés entender su origen desde
+            una mirada diferente, te invito a una sesión. No necesitas saber nada, solo estar dispuesta/o
+            a mirar hacia adentro.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Próximo paso"
+    title="Empezá a entender tu ansiedad"
+    subtitle="Agendá una sesión online y descubrí el mensaje que hay detrás de lo que sentís."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+    variant="accent"
+  />
+</BaseLayout>

@@ -1,0 +1,241 @@
+---
+import Container from '@components/ui/Container.astro';
+import SectionTitle from '@components/ui/SectionTitle.astro';
+import Icon from '@components/ui/Icon.astro';
+import { getButtonClasses } from '@components/ui/Button.tsx';
+import { CHECKLIST_ITEMS } from '@data/checklist';
+---
+
+<section class="section-padding" aria-label="¿Es para mí?">
+  <Container width="narrow">
+    <SectionTitle
+      eyebrow="¿Es para mí?"
+      title="Señales de que tu cuerpo te está hablando"
+      subtitle="Deslizá cada tarjeta: derecha si te identifica, izquierda si no. Al final, una sorpresa."
+    />
+
+    <!-- Swipe Cards -->
+    <div class="relative mt-10 mx-auto max-w-md" data-swipe-cards>
+      <!-- Contador de progreso -->
+      <p class="text-center text-sm text-on-surface-variant mb-4" data-swipe-progress></p>
+
+      <!-- Stack de tarjetas -->
+      <div class="relative h-64 sm:h-56" data-swipe-stack>
+        {CHECKLIST_ITEMS.map((item, i) => (
+          <div
+            class="absolute inset-0 rounded-xl border-2 border-surface-container-high bg-surface p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-md select-none cursor-grab active:cursor-grabbing transition-shadow duration-200"
+            data-swipe-card
+            data-id={item.id}
+            data-index={i}
+            style="touch-action: none; z-index: {CHECKLIST_ITEMS.length - i}"
+          >
+            <span class="w-8 h-1 rounded-full bg-secondary mb-5" aria-hidden="true" />
+            <p class="text-base sm:text-lg font-heading text-on-surface leading-snug">
+              {item.label}
+            </p>
+
+            <!-- Labels de swipe -->
+            <div class="absolute top-4 left-4 -rotate-12 border-2 border-primary text-primary font-bold text-xs uppercase px-3 py-1 rounded-md opacity-0 transition-opacity duration-150" data-swipe-yes>
+              Sí
+            </div>
+            <div class="absolute top-4 right-4 rotate-12 border-2 border-secondary text-secondary font-bold text-xs uppercase px-3 py-1 rounded-md opacity-0 transition-opacity duration-150" data-swipe-no>
+              No
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="flex justify-center gap-6 mt-6" data-swipe-actions>
+        <button
+          class="w-14 h-14 rounded-full border-2 border-secondary text-secondary flex items-center justify-center hover:bg-secondary/10 transition-colors active:scale-90"
+          aria-label="No"
+          data-swipe-no-btn
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="w-6 h-6">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <button
+          class="w-14 h-14 rounded-full border-2 border-primary text-primary flex items-center justify-center hover:bg-primary/10 transition-colors active:scale-90"
+          aria-label="Sí"
+          data-swipe-yes-btn
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Resultado final -->
+    <div class="mt-10 text-center hidden" data-swipe-result>
+      <p class="text-lg font-heading text-on-surface">
+        Seleccionaste <strong class="text-primary" data-swipe-number>0</strong> de {CHECKLIST_ITEMS.length} señales
+      </p>
+      <p class="mt-2 text-sm text-on-surface-variant">
+        Cada señal es una puerta. Si querés, podemos explorarlas juntos en una sesión.
+      </p>
+      <div class="mt-6 flex justify-center">
+        <a href="/sesiones-online" class={getButtonClasses({ variant: 'primary', size: 'lg' })}>
+          Agenda tu sesión
+          <Icon name="arrow-right" size="sm" />
+        </a>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  const stack = document.querySelector('[data-swipe-stack]');
+  const cards = [...document.querySelectorAll('[data-swipe-card]')];
+  const progress = document.querySelector('[data-swipe-progress]');
+  const result = document.querySelector('[data-swipe-result]');
+  const numberEl = document.querySelector('[data-swipe-number]');
+  const noBtn = document.querySelector('[data-swipe-no-btn]');
+  const yesBtn = document.querySelector('[data-swipe-yes-btn]');
+
+  let currentIndex = 0;
+  let count = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let currentX = 0;
+  let currentY = 0;
+
+  const SWIPE_THRESHOLD = 80;
+
+  function getCard() {
+    return cards[currentIndex];
+  }
+
+  function updateProgress() {
+    if (progress) {
+      const remaining = cards.length - currentIndex;
+      if (remaining > 0) {
+        progress.textContent = `Tarjeta ${currentIndex + 1} de ${cards.length}`;
+      }
+    }
+  }
+
+  function showResult() {
+    if (result) result.classList.remove('hidden');
+    if (numberEl) numberEl.textContent = String(count);
+    if (stack) stack.style.display = 'none';
+    if (progress) progress.style.display = 'none';
+    const actions = document.querySelector('[data-swipe-actions]');
+    if (actions) actions.style.display = 'none';
+  }
+
+  function swipeCard(direction) {
+    const card = getCard();
+    if (!card) {
+      showResult();
+      return;
+    }
+
+    const yesLabel = card.querySelector('[data-swipe-yes]');
+    const noLabel = card.querySelector('[data-swipe-no]');
+
+    if (direction === 'yes') {
+      count++;
+      card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+      card.style.transform = 'translateX(200px) rotate(8deg)';
+      card.style.opacity = '0';
+    } else {
+      card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+      card.style.transform = 'translateX(-200px) rotate(-8deg)';
+      card.style.opacity = '0';
+    }
+
+    yesLabel.style.opacity = '0';
+    noLabel.style.opacity = '0';
+
+    currentIndex++;
+    updateProgress();
+
+    setTimeout(() => {
+      if (currentIndex >= cards.length) {
+        showResult();
+      }
+    }, 300);
+  }
+
+  // Mouse events (desktop)
+  function onPointerDown(e) {
+    const card = getCard();
+    if (!card || currentIndex >= cards.length) return;
+
+    isDragging = true;
+    const point = e.touches ? e.touches[0] : e;
+    startX = point.clientX;
+    startY = point.clientY;
+    currentX = 0;
+    currentY = 0;
+
+    card.style.transition = 'none';
+    card.style.cursor = 'grabbing';
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const card = getCard();
+    if (!card) return;
+
+    const point = e.touches ? e.touches[0] : e;
+    currentX = point.clientX - startX;
+    currentY = point.clientY - startY;
+
+    const rotate = currentX * 0.05;
+    const alpha = Math.min(Math.abs(currentX) / SWIPE_THRESHOLD, 1);
+
+    card.style.transform = `translateX(${currentX}px) translateY(${currentY * 0.3}px) rotate(${rotate}deg)`;
+
+    const yesLabel = card.querySelector('[data-swipe-yes]');
+    const noLabel = card.querySelector('[data-swipe-no]');
+    if (currentX > 0) {
+      yesLabel.style.opacity = String(alpha);
+      noLabel.style.opacity = '0';
+    } else {
+      noLabel.style.opacity = String(alpha);
+      yesLabel.style.opacity = '0';
+    }
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const card = getCard();
+    if (!card) return;
+
+    card.style.cursor = '';
+
+    if (Math.abs(currentX) > SWIPE_THRESHOLD) {
+      swipeCard(currentX > 0 ? 'yes' : 'no');
+    } else {
+      card.style.transition = 'transform 0.3s ease';
+      card.style.transform = 'translateX(0) rotate(0)';
+      const yesLabel = card.querySelector('[data-swipe-yes]');
+      const noLabel = card.querySelector('[data-swipe-no]');
+      yesLabel.style.opacity = '0';
+      noLabel.style.opacity = '0';
+    }
+  }
+
+  // Card stack touch/mouse events
+  stack.addEventListener('touchstart', onPointerDown, { passive: true });
+  stack.addEventListener('touchmove', onPointerMove, { passive: false });
+  stack.addEventListener('touchend', onPointerUp);
+  stack.addEventListener('mousedown', onPointerDown);
+  document.addEventListener('mousemove', onPointerMove);
+  document.addEventListener('mouseup', onPointerUp);
+
+  // Button clicks
+  if (yesBtn) yesBtn.addEventListener('click', () => swipeCard('yes'));
+  if (noBtn) noBtn.addEventListener('click', () => swipeCard('no'));
+
+  updateProgress();
+</script>

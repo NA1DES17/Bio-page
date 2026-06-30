@@ -1,0 +1,21 @@
+---
+import { cn } from '@utils/cn';
+
+export interface Props {
+  class?: string;
+  children?: import('astro/types').RenderTemplateResult;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    cn(
+      'rounded-default bg-surface-container-low border border-surface-container p-6 sm:p-8 transition-all duration-300',
+      className,
+    ),
+  ]}
+>
+  <slot />
+</div>

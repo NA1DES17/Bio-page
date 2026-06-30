@@ -1,0 +1,32 @@
+{
+  "name": "serene-roots",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Biodescodificación y acompañamiento emocional — Serene Roots",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "astro check",
+    "format": "prettier -w . --plugin prettier-plugin-astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.2.5",
+    "@astrojs/sitemap": "^3.3.1",
+    "@tailwindcss/vite": "^4.1.5",
+    "astro": "^6.3.7",
+    "swiper": "^14.0.1",
+    "tailwindcss": "^4.1.5",
+    "typescript": "^5.7.0"
+  },
+  "overrides": {
+    "@astrojs/mdx": {
+      "astro": "$astro"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProcessSection from '@components/sections/ProcessSection.astro';
+import FAQSection from '@components/sections/FAQSection.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import ContactSection from '@components/sections/ContactSection.astro';
+import { SERVICES, SESSION_PROCESS, PRICING } from '@data/services';
+import { FAQS_SESIONES } from '@data/content';
+import { buildFAQSchema, buildServiceSchema } from '@utils/metadata';
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Sesiones online', path: '/sesiones-online' },
+];
+---
+
+<BaseLayout
+  title="Sesiones de Biodescodificación Online — Alma en Calma"
+  description="Sesiones de biodescodificación online en Argentina. Acompañamiento personalizado para liberar bloqueos emocionales desde la comodidad de tu hogar."
+  currentPath="/sesiones-online"
+  openGraph={{
+    title: 'Sesiones de Biodescodificación Online',
+    description: 'Sesiones de biodescodificación online. Acompañamiento personalizado desde la comodidad de tu hogar.',
+  }}
+  breadcrumbs={breadcrumbs}
+  schema={[
+    buildFAQSchema(FAQS_SESIONES),
+    buildServiceSchema({
+      name: 'Sesión de Biodescodificación Online',
+      description: 'Sesión individual de biodescodificación por videollamada. Acompañamiento personalizado para liberar bloqueos emocionales.',
+      url: `${Astro.url.origin}/sesiones-online`,
+    }),
+  ]}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Sesiones online</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
+        Sesiones de biodescodificación online
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed max-w-2xl">
+        Desde la comodidad de tu hogar, trabajamos juntos para identificar el origen emocional de tus
+        conflictos y liberar aquello que ya no te sirve. Un espacio seguro, confidencial y transformador.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="grid gap-8 sm:grid-cols-2">
+        {SERVICES.filter((s) => s.featured).map((service) => (
+          <div class="p-6 sm:p-8 rounded-default bg-surface-container border border-surface-container-high">
+            <h2 class="text-xl font-heading text-on-surface mb-3">{service.title}</h2>
+            <p class="text-sm text-on-surface-variant leading-relaxed mb-6">{service.description}</p>
+            <ul class="space-y-2 text-sm text-on-surface-variant mb-6">
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                Duración: {service.duration}
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                Modalidad: Online por videollamada
+              </li>
+            </ul>
+            <p class="font-heading text-2xl text-primary mb-4">
+              ${typeof PRICING[service.slug] !== 'undefined' ? PRICING[service.slug].amount : ''}
+              <span class="text-sm text-on-surface-variant font-body"> {typeof PRICING[service.slug] !== 'undefined' ? PRICING[service.slug].currency : ''}</span>
+            </p>
+            <p class="text-xs text-on-surface-variant mb-6">{typeof PRICING[service.slug] !== 'undefined' ? PRICING[service.slug].description : ''}</p>
+            <a
+              href="/contacto"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-on-primary font-medium rounded-full hover:bg-primary-container transition-all duration-300 text-sm"
+            >
+              Reservar sesión
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="¿Cómo funciona?"
+    title="Tu camino en 3 pasos"
+    subtitle="Simple, claro y desde donde estés."
+    steps={SESSION_PROCESS}
+  />
+
+  <FAQSection
+    eyebrow="FAQ"
+    title="Preguntas sobre las sesiones"
+    faqs={FAQS_SESIONES}
+  />
+
+  <CTASection
+    title="¿Lista/o para tu primera sesión?"
+    subtitle="Agendá hoy y empezá a descubrir el poder de entender tus emociones."
+    cta={{ label: 'Agendar ahora', href: '/contacto' }}
+    variant="accent"
+  />
+
+  <ContactSection
+    eyebrow="Consultas"
+    title="¿Tenés dudas?"
+    subtitle="Escribime y te respondo personalmente. Sin compromiso."
+  />
+</BaseLayout>
