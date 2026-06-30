@@ -148,6 +148,9 @@ import { CHECKLIST_ITEMS } from '@data/checklist';
       card.style.opacity = '0';
     }
 
+    // Evita que la card invisible siga atrapando eventos
+    card.style.pointerEvents = 'none';
+
     yesLabel.style.opacity = '0';
     noLabel.style.opacity = '0';
 
@@ -155,6 +158,7 @@ import { CHECKLIST_ITEMS } from '@data/checklist';
     updateProgress();
 
     setTimeout(() => {
+      card.style.display = 'none';
       if (currentIndex >= cards.length) {
         showResult();
       }
