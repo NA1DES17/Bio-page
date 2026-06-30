@@ -27,7 +27,7 @@ import { CHECKLIST_ITEMS } from '@data/checklist';
             data-swipe-card
             data-id={item.id}
             data-index={i}
-            style="touch-action: none; z-index: {CHECKLIST_ITEMS.length - i}"
+            style={{ touchAction: 'none', zIndex: CHECKLIST_ITEMS.length - i }}
           >
             <span class="w-8 h-1 rounded-full bg-secondary mb-5" aria-hidden="true" />
             <p class="text-base sm:text-lg font-heading text-on-surface leading-snug">
