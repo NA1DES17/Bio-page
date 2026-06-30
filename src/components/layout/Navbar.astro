@@ -16,8 +16,8 @@ const settings = SITE_SETTINGS.navbar;
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-surface-container overflow-x-hidden">
   <Container>
-    <nav class="flex items-center justify-between h-16 sm:h-20" aria-label="Navegación principal">
-      <a href="/" class="flex items-center gap-2" aria-label={SITE.name}>
+    <nav class="relative flex items-center justify-between h-16 sm:h-20" aria-label="Navegación principal">
+      <a href="/" class="flex items-center gap-2 flex-1 justify-center md:flex-initial md:justify-start" aria-label={SITE.name}>
         <img src="/logobio.png" alt={SITE.name} class="h-12 w-auto max-w-[120px] sm:max-w-none" />
         <span class="hidden sm:inline font-heading text-lg font-medium tracking-tight text-on-surface">{SITE.name}</span>
       </a>
@@ -54,7 +54,7 @@ const settings = SITE_SETTINGS.navbar;
 
       <!-- Mobile Menu Toggle -->
       <button
-        class="md:hidden p-2 text-on-surface-variant hover:text-on-surface transition-colors"
+        class="md:hidden absolute right-0 p-2 text-on-surface-variant hover:text-on-surface transition-colors"
         aria-label="Abrir menú"
         aria-expanded="false"
         data-mobile-menu-toggle
