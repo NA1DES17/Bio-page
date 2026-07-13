@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroSection from '@components/sections/HeroSection.astro';
+import ProcessSection from '@components/sections/ProcessSection.astro';
 import ChecklistSection from '@components/sections/ChecklistSection.astro';
 import SymptomsSection from '@components/sections/SymptomsSection.astro';
 import CTASection from '@components/sections/CTASection.astro';
@@ -44,6 +45,33 @@ const testimonials = [
     subtitle={hero.subtitle}
     cta={hero.cta}
     secondaryCta={hero.secondaryCta}
+  />
+
+  <ProcessSection
+    eyebrow="El proceso"
+    title="¿Cómo es una sesión de biodescodificación?"
+    steps={[
+      {
+        step: '1',
+        title: 'Reserva de turno',
+        description: 'Elegís el día y horario disponible que mejor se adapte a vos.',
+      },
+      {
+        step: '2',
+        title: 'Confirmación',
+        description: 'Una vez realizado el pago, tu turno quedará confirmado y recibirás el enlace para ingresar a la sesión online.',
+      },
+      {
+        step: '3',
+        title: 'Sesión online',
+        description: 'Nos encontramos por videollamada, en un espacio confidencial y de escucha. Durante la sesión vamos conversando sobre el motivo de tu consulta y realizamos distintos ejercicios para explorar el origen emocional que dio lugar al conflicto, utilizando herramientas de biodescodificación.',
+      },
+      {
+        step: '4',
+        title: 'Cierre de la sesión',
+        description: 'Al finalizar, realizamos una devolución de todo lo trabajado y te llevarás herramientas que te permitirán continuar tu proceso y avanzar en la resolución del conflicto emocional.',
+      },
+    ]}
   />
 
   <ChecklistSection />
