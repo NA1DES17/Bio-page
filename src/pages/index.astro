@@ -4,6 +4,7 @@ import HeroSection from '@components/sections/HeroSection.astro';
 import ProcessSection from '@components/sections/ProcessSection.astro';
 import ChecklistSection from '@components/sections/ChecklistSection.astro';
 import SymptomsSection from '@components/sections/SymptomsSection.astro';
+import AboutSection from '@components/sections/AboutSection.astro';
 import CTASection from '@components/sections/CTASection.astro';
 import FAQSection from '@components/sections/FAQSection.astro';
 import TestimonialSection from '@components/sections/TestimonialSection.astro';
@@ -53,23 +54,28 @@ const testimonials = [
     steps={[
       {
         step: '1',
-        title: 'Reserva de turno',
-        description: 'Elegís el día y horario disponible que mejor se adapte a vos.',
+        title: 'Entrevista inicial',
+        description: 'Conversamos sobre el motivo de consulta y el objetivo que deseás trabajar.',
       },
       {
         step: '2',
-        title: 'Confirmación',
-        description: 'Una vez realizado el pago, tu turno quedará confirmado y recibirás el enlace para ingresar a la sesión online.',
+        title: 'Exploración de la historia personal',
+        description: 'Identificamos acontecimientos importantes, emociones y experiencias relacionadas con la situación actual.',
       },
       {
         step: '3',
-        title: 'Sesión online',
-        description: 'Nos encontramos por videollamada, en un espacio confidencial y de escucha. Durante la sesión vamos conversando sobre el motivo de tu consulta y realizamos distintos ejercicios para explorar el origen emocional que dio lugar al conflicto, utilizando herramientas de biodescodificación.',
+        title: 'Identificación del conflicto emocional',
+        description: 'Buscamos el origen emocional asociado al síntoma o dificultad para favorecer una toma de conciencia.',
       },
       {
         step: '4',
+        title: 'Integración y comprensión',
+        description: 'Trabajamos sobre los nuevos recursos y la comprensión de la vivencia para generar una mirada diferente sobre el conflicto.',
+      },
+      {
+        step: '5',
         title: 'Cierre de la sesión',
-        description: 'Al finalizar, realizamos una devolución de todo lo trabajado y te llevarás herramientas que te permitirán continuar tu proceso y avanzar en la resolución del conflicto emocional.',
+        description: 'Se realiza una devolución final y se acuerdan las recomendaciones para el proceso personal posterior.',
       },
     ]}
   />
@@ -77,6 +83,8 @@ const testimonials = [
   <ChecklistSection />
 
   <SymptomsSection />
+
+  <AboutSection />
 
   <CTASection
     eyebrow="Primer paso"
