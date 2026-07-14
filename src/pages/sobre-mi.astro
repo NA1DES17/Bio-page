@@ -11,11 +11,11 @@ const breadcrumbs = [
 
 <BaseLayout
   title="Sobre Mí — Alma en Calma"
-  description="Conocé a Mariana, facilitadora en biodescodificación y acompañante terapéutica. Descubrí su enfoque, formación y compromiso con tu bienestar emocional."
+  description="Conocé a Melisa Solange Faría, profesional certificada en Biodescodificación. Descubrí su enfoque, formación y compromiso con tu bienestar emocional."
   currentPath="/sobre-mi"
   openGraph={{
     title: 'Sobre Mí — Alma en Calma',
-    description: 'Conocé a Mariana, facilitadora en biodescodificación. Su enfoque, formación y compromiso con tu bienestar emocional.',
+    description: 'Conocé a Melisa Solange Faría, profesional certificada en Biodescodificación. Su enfoque, formación y compromiso con tu bienestar emocional.',
   }}
   breadcrumbs={breadcrumbs}
 >
@@ -34,8 +34,13 @@ const breadcrumbs = [
   <section class="section-padding">
     <div class="container-narrow">
       <div class="grid lg:grid-cols-5 gap-12 items-start">
-        <div class="lg:col-span-2 aspect-[3/4] rounded-xl bg-surface-container-high flex items-center justify-center">
-          <span class="text-on-surface-variant text-sm">Foto de {PRACTITIONER.name}</span>
+        <div class="lg:col-span-2">
+          <img
+            src="/about_me.jpeg"
+            alt={`Foto de ${PRACTITIONER.name}`}
+            class="w-full aspect-[3/4] object-cover rounded-xl"
+            loading="lazy"
+          />
         </div>
 
         <div class="lg:col-span-3 space-y-5 text-base text-on-surface-variant leading-relaxed">

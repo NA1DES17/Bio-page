@@ -1,7 +1,7 @@
 export const PRACTITIONER = {
-  name: 'María',
-  fullName: 'María García',
-  title: 'Facilitadora en Biodescodificación\nAcompañante Terapéutica',
+  name: 'Melisa',
+  fullName: 'Melisa Solange Faría',
+  title: 'Diplomada en Biodescodificación',
   shortBio:
     'Apasionada por acompañar procesos de sanación emocional a través de la biodescodificación. Mi enfoque combina el conocimiento técnico con una mirada profundamente humana y respetuosa de cada historia.',
   longBio: [
