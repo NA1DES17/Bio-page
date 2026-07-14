@@ -20,10 +20,10 @@ const breadcrumbs = [
   breadcrumbs={breadcrumbs}
 >
   <section class="section-padding pb-0">
-    <div class="container-narrow">
+    <div class="container-page">
       <p class="eyebrow mb-4">Sobre mí</p>
       <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
-        {PRACTITIONER.name}
+        {PRACTITIONER.fullName}
       </h1>
       <p class="text-lg text-on-surface-variant whitespace-pre-line leading-relaxed">
         {PRACTITIONER.title}
@@ -32,18 +32,18 @@ const breadcrumbs = [
   </section>
 
   <section class="section-padding">
-    <div class="container-narrow">
-      <div class="grid lg:grid-cols-5 gap-12 items-start">
+    <div class="container-page">
+      <div class="grid lg:grid-cols-4 gap-12 items-start">
         <div class="lg:col-span-2">
           <img
             src="/about_me.jpeg"
             alt={`Foto de ${PRACTITIONER.name}`}
-            class="w-full aspect-[3/4] object-cover rounded-xl"
+            class="w-full aspect-[16/9] object-cover rounded-xl"
             loading="lazy"
           />
         </div>
 
-        <div class="lg:col-span-3 space-y-5 text-base text-on-surface-variant leading-relaxed">
+        <div class="lg:col-span-2 space-y-5 text-base text-on-surface-variant leading-relaxed">
           {PRACTITIONER.longBio.map((p) => (
             <p>{p}</p>
           ))}

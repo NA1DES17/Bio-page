@@ -1,6 +1,6 @@
 export const PRACTITIONER = {
   name: 'Melisa',
-  fullName: 'Melisa Solange Faría',
+  fullName: 'Melisa Solange Faria',
   title: 'Diplomada en Biodescodificación',
   shortBio:
     'Apasionada por acompañar procesos de sanación emocional a través de la biodescodificación. Mi enfoque combina el conocimiento técnico con una mirada profundamente humana y respetuosa de cada historia.',
