@@ -1,42 +1,42 @@
 export const CHECKLIST_ITEMS = [
   {
-    id: 'ansiedad',
-    label: 'Siento ansiedad o estrés que no se va con nada',
+    id: 'dolores-fisicos',
+    label: 'Tengo dolores o malestares físicos que persisten y no encuentro una explicación clara.',
   },
   {
-    id: 'dolores',
-    label: 'Tengo dolores físicos sin causa médica clara',
+    id: 'sintomas-recurrentes',
+    label: 'Convivo con alergias, problemas digestivos, migrañas u otros síntomas que vuelven una y otra vez.',
   },
   {
-    id: 'digestivo',
-    label: 'Mis problemas digestivos vuelven una y otra vez',
+    id: 'sin-cambios',
+    label: 'Hay cosas en mi vida que siguen sin cambiar por más que intento resolverlo.',
   },
   {
-    id: 'patrones',
-    label: 'Repito patrones en relaciones o trabajo y no entiendo por qué',
+    id: 'conflictos-pareja',
+    label: 'Tengo conflictos de pareja o me cuesta encontrar una relación sana y estable.',
   },
   {
-    id: 'duelos',
-    label: 'Hay duelos que siento que no terminé de procesar',
+    id: 'desgaste-familiar',
+    label: 'La relación con mis hijos, mis padres o mi familia me genera un desgaste constante.',
   },
   {
-    id: 'bloqueo',
-    label: 'Me siento trabado emocionalmente sin saber por qué',
+    id: 'mismos-conflictos',
+    label: 'Siento que siempre termino viviendo los mismos conflictos en mis relaciones.',
   },
   {
-    id: 'reacciones',
-    label: 'Reacciono de forma desproporcionada a situaciones cotidianas',
+    id: 'trabajo-proyectos',
+    label: 'Me cuesta avanzar en el trabajo o concretar los proyectos que deseo.',
   },
   {
-    id: 'cansancio',
-    label: 'Arrastro cansancio crónico o falta de energía',
+    id: 'estabilidad-economica',
+    label: 'Vivo preocupado por el dinero y me cuesta alcanzar estabilidad económica.',
   },
   {
-    id: 'transgeneracional',
-    label: 'Siento que ciertos conflictos familiares vienen de antes de mí',
+    id: 'autoestima',
+    label: 'No me siento a gusto con mi cuerpo o mi imagen, y eso afecta mi autoestima.',
   },
   {
-    id: 'sintomas',
-    label: 'Mi cuerpo habla con síntomas que la medicina no explica',
+    id: 'nueva-perspectiva',
+    label: 'Siento que hay algo en mi vida que no logro comprender y quiero mirarlo desde otra perspectiva.',
   },
 ];
