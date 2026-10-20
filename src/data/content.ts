@@ -52,19 +52,9 @@ export const FAQS_HOME = [
       'Mientras la medicina aborda el síntoma a nivel físico y la psicología trabaja la salud mental, la biodescodificación ofrece una capa adicional: explorar si hay un conflicto emocional no resuelto detrás de lo que el cuerpo expresa. Muchas personas combinan los tres abordajes y encuentran una visión más completa de su salud.',
   },
   {
-    question: '¿Qué NO es la biodescodificación?',
-    answer:
-      'No es una terapia, no es una práctica médica, no reemplaza diagnósticos ni tratamientos, y no promete curas. Es un espacio de acompañamiento que te invita a mirar tus síntomas desde una perspectiva emocional, siempre con la premisa de que cada persona es responsable de su proceso de sanación.',
-  },
-  {
     question: '¿Necesito dejar mi tratamiento si empiezo biodescodificación?',
     answer:
       'No. Al contrario: siempre recomendamos mantener tus controles médicos y tratamientos en curso. La biodescodificación no está diseñada para reemplazar nada, sino para sumar una mirada que tal vez no habías explorado.',
-  },
-  {
-    question: '¿Un acompañante en biodescodificación es lo mismo que un psicólogo?',
-    answer:
-      'No. El acompañante en biodescodificación no es un profesional de la salud mental ni un médico. Su rol es guiar una exploración emocional desde un enfoque complementario. Si necesitás apoyo psicológico o médico, siempre es recomendable consultar con el profesional correspondiente.',
   },
 ];
 

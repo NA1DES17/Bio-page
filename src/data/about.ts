@@ -5,14 +5,14 @@ export const PRACTITIONER = {
   shortBio:
     'Apasionada por acompañar procesos de sanación emocional a través de la biodescodificación. Mi enfoque combina el conocimiento técnico con una mirada profundamente humana y respetuosa de cada historia.',
   longBio: [
-    'Mi camino hacia la biodescodificación comenzó desde mi propia experiencia de sanación. Al descubrir el poder de conectar las emociones con los síntomas físicos, supe que quería acompañar a otras personas en ese mismo viaje de autoconocimiento y liberación.',
-    'Me formé en biodescodificación con enfoque en acompañamiento terapéutico, y desde entonces he acompañado a decenas de personas en su proceso de sanación emocional. Mi metodología integra la escucha activa, la empatía y herramientas prácticas de liberación emocional.',
-    'Creo firmemente que cada persona tiene dentro de sí la sabiduría para sanar. Mi rol es ser una guía que te ayude a conectar con esa sabiduría interna y a liberar aquello que ya no te sirve.',
+    'Mi interés por la biodescodificación nació de mi propia experiencia de sanación. Al entender cómo las emociones se relacionan con los síntomas físicos, decidí ayudar a otros en su proceso de autoconocimiento y liberación.',
+    'Me formé en biodescodificación con un enfoque en el acompañamiento terapéutico y he trabajado con muchas personas en su sanación emocional. Mi metodología incluye escucha activa, empatía y herramientas prácticas para liberar emociones.',
+    'Creo que todos tenemos la capacidad de sanar. Mi papel es guiarte para que conectes con esa sabiduría interna y dejes ir lo que ya no te beneficia.',
   ],
   credentials: [
-    'Formación en Biodescodificación (Escuela Argentina de Biodecodificación)',
+    'Biodescodificación (Escuela Argentina de Biodecodificación)',
     'Acompañante Terapéutica especializada en procesos emocionales',
-    'Formación en Psiconeuroinmunología Clínica',
+    'Psiconeuroinmunología Clínica',
     'Miembro de la Asociación Argentina de Terapias Complementarias',
   ],
   image: '/assets/images/practitioner.jpg',
@@ -20,17 +20,17 @@ export const PRACTITIONER = {
     {
       title: 'Escucha profunda',
       description:
-        'Cada sesión es un espacio seguro donde tus palabras son recibidas sin juicio. Escucho lo que decís y lo que tu cuerpo expresa en silencio.',
+        'Cada sesión es un espacio seguro donde tus palabras son escuchadas sin juicio. Presto atención tanto a lo que dices como a lo que tu cuerpo expresa.',
     },
     {
       title: 'Mirada integral',
       description:
-        'No trabajamos síntomas aislados. Observamos tu historia completa: tus emociones, tu cuerpo, tus relaciones y tu entorno.',
+        'No nos enfocamos en síntomas aislados. Consideramos tu historia completa: emociones, cuerpo, relaciones y entorno.',
     },
     {
       title: 'Acompañamiento respetuoso',
       description:
-        'Tu proceso es tuyo. Yo estoy para acompañarte, no para dirigirte. Cada persona tiene su propio ritmo y su propio camino de sanación.',
+        'Tu proceso es tuyo. Estoy aquí para acompañarte, no para dirigirte. Cada persona avanza a su propio ritmo en su sanación.',
     },
   ],
 };

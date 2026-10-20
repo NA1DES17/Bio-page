@@ -1,32 +1,30 @@
 ---
 import Container from '@components/ui/Container.astro';
-import SectionTitle from '@components/ui/SectionTitle.astro';
 import { getButtonClasses } from '@components/ui/Button.tsx';
 import Icon from '@components/ui/Icon.astro';
 ---
 
 <section class="section-padding overflow-x-hidden" aria-label="Sesiones online">
   <Container width="narrow">
-    <SectionTitle
-      eyebrow="Sesiones online"
-      title="Duración y valor"
-    />
+    <p class="eyebrow mb-4 text-center">Sesiones online</p>
 
     <div class="mt-10 grid sm:grid-cols-2 gap-8 text-center">
       <div class="rounded-2xl border border-surface-container-high bg-surface p-8">
-        <p class="eyebrow mb-3">Duración</p>
-        <p class="text-on-surface-variant leading-relaxed">
-          Cada sesión tiene una duración aproximada de <strong class="text-on-surface">90 minutos</strong>, un tiempo pensado para que puedas expresar lo que sentís, explorar tu proceso con tranquilidad y trabajar de manera profunda, sin apuros.
-        </p>
+        <Icon name="hourglass" size="lg" class="mb-3 text-primary" />
+        <p class="text-3xl font-heading text-on-surface">90 Min</p>
       </div>
 
       <div class="rounded-2xl border border-surface-container-high bg-surface p-8">
-        <p class="eyebrow mb-3">Valor</p>
-        <p class="text-3xl font-heading text-on-surface mb-3">$35.000 <span class="text-base font-body font-normal text-on-surface-variant">ARS</span></p>
-        <p class="text-on-surface-variant leading-relaxed text-sm">
-          Sesión online individual. El valor incluye una sesión personalizada, realizada por videollamada, en un espacio de escucha, respeto y absoluta confidencialidad.
-        </p>
+        <Icon name="dollar" size="lg" class="mb-3 text-primary" />
+        <p class="text-3xl font-heading text-on-surface">35.000 ARS</p>
       </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <p class="eyebrow mb-3">¿Qué incluye la sesión?</p>
+      <p class="text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        La sesión se realiza por videollamada e incluye un acompañamiento personalizado, un espacio de escucha confidencial y herramientas para continuar tu proceso.
+      </p>
     </div>
 
     <div class="mt-10 text-center">
