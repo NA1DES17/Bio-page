@@ -2,7 +2,15 @@
 import Container from '@components/ui/Container.astro';
 import SectionTitle from '@components/ui/SectionTitle.astro';
 import Card from '@components/ui/Card.astro';
+import Icon from '@components/ui/Icon.astro';
 import { SYMPTOMS } from '@data/symptoms';
+
+// En mobile las 9 tarjetas se agrupan de a 3 por slide (3 filas de 3).
+const MOBILE_ROWS = 3;
+const mobileRows = Array.from(
+  { length: Math.ceil(SYMPTOMS.length / MOBILE_ROWS) },
+  (_, i) => SYMPTOMS.slice(i * MOBILE_ROWS, i * MOBILE_ROWS + MOBILE_ROWS),
+);
 ---
 
 <section class="section-padding bg-surface-container-low">
@@ -13,29 +21,44 @@ import { SYMPTOMS } from '@data/symptoms';
       subtitle="Cada síntoma es una forma que tiene tu cuerpo de decirte algo. No estás sola/o en esto."
     />
 
-    <!-- Mobile: Swiper -->
-    <div class="mt-8 sm:hidden overflow-hidden" data-symptoms-swiper>
+    <!-- Mobile: Swiper, 3 filas de 3 tarjetas por slide -->
+    <div class="relative mt-8 sm:hidden overflow-hidden" data-symptoms-swiper>
       <div class="swiper-wrapper">
-        {SYMPTOMS.map((symptom) => (
+        {mobileRows.map((row) => (
           <div class="swiper-slide h-auto">
-            <Card class="h-full">
-              <div class="flex flex-col items-center gap-3 text-center">
-                <img
-                  src={symptom.icon}
-                  alt=""
-                  width="512"
-                  height="512"
-                  class="w-12 h-12 object-contain"
-                  loading="lazy"
-                  aria-hidden="true"
-                />
-                <h3 class="text-lg font-heading text-on-surface">{symptom.title}</h3>
-              </div>
-            </Card>
+            <div class="flex flex-col gap-3">
+              {row.map((symptom) => (
+                <Card>
+                  <div class="flex items-center gap-4 text-left">
+                    <img
+                      src={symptom.icon}
+                      alt=""
+                      width="512"
+                      height="512"
+                      class="w-12 h-12 object-contain shrink-0"
+                      loading="lazy"
+                      aria-hidden="true"
+                    />
+                    <h3 class="text-lg font-heading text-on-surface">{symptom.title}</h3>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
         ))}
       </div>
-      <div class="flex justify-center gap-2 mt-6" data-symptoms-pagination></div>
+
+      <!-- Indicaciones para deslizar: animación de rebote la primera vez, flecha después -->
+      <button
+        type="button"
+        data-symptoms-hint
+        aria-label="Ver más síntomas"
+        class="absolute top-1/2 right-1 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-surface shadow-md text-primary border border-surface-container-high transition-opacity duration-300 opacity-0 pointer-events-none"
+      >
+        <span data-symptoms-hint-icon class="inline-flex rotate-0 transition-transform duration-300">
+          <Icon name="arrow-right" size="sm" />
+        </span>
+      </button>
     </div>
 
     <!-- Desktop: Grid -->
@@ -66,22 +89,115 @@ import { SYMPTOMS } from '@data/symptoms';
 
   const el = document.querySelector('[data-symptoms-swiper]');
   const isMobile = window.matchMedia('(max-width: 639px)');
+  const HINT_KEY = 'symptoms-swiper-hint';
+
+  function hasSeenHint() {
+    try {
+      return localStorage.getItem(HINT_KEY) === '1';
+    } catch {
+      return false;
+    }
+  }
+
+  function markHintSeen() {
+    try {
+      localStorage.setItem(HINT_KEY, '1');
+    } catch {
+      /* modo privado o storage bloqueado: se muestra la animación igual */
+    }
+  }
 
   function initSwiper() {
     if (el && isMobile.matches && !el.swiper) {
       new Swiper(el, {
-        slidesPerView: 1.15,
+        slidesPerView: 1,
         spaceBetween: 16,
-        centeredSlides: false,
-        pagination: {
-          el: '[data-symptoms-pagination]',
-          clickable: true,
-          renderBullet: (_, className) => `<span class="${className} w-2 h-2 rounded-full bg-surface-variant transition-colors duration-200 [&.swiper-pagination-bullet-active]:bg-primary"></span>`,
+        on: {
+          slideChange(swiper) {
+            updateHint(swiper);
+          },
         },
       });
     }
   }
 
+  /* La primera visita muestra la animación de rebote; después, la flecha al costado. */
+  const hint = el?.querySelector('[data-symptoms-hint]');
+  const hintIcon = el?.querySelector('[data-symptoms-hint-icon]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let hintPlayed = hasSeenHint();
+
+  function showHint() {
+    if (!hint) return;
+
+    hint.classList.remove('opacity-0', 'pointer-events-none');
+    hint.classList.add('opacity-70');
+
+    if (prefersReducedMotion.matches || hintPlayed) return;
+
+    hintPlayed = true;
+    markHintSeen();
+
+    // Un solo rebote: la flecha aparece y se desplaza hacia el contenido siguiente.
+    hintIcon?.animate(
+      [
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(10px)' },
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(10px)' },
+        { transform: 'translateX(0)' },
+      ],
+      { duration: 1400, easing: 'ease-in-out' },
+    );
+  }
+
+  function updateHint(swiper) {
+    if (!hint) return;
+
+    const isLast = swiper.activeIndex >= swiper.slides.length - 1;
+    const shouldShow = !isLast && (hintPlayed || prefersReducedMotion.matches);
+
+    hint.classList.toggle('opacity-70', shouldShow);
+    hint.classList.toggle('opacity-0', !shouldShow);
+    hint.classList.toggle('pointer-events-none', !shouldShow);
+  }
+
   initSwiper();
-  isMobile.addEventListener('change', initSwiper);
+
+  /* La animación se dispara cuando la sección entra a la vista. */
+  let hintScheduled = false;
+
+  function scheduleHint() {
+    if (hintScheduled || !el?.swiper || !isMobile.matches) return;
+    hintScheduled = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+
+        observer.disconnect();
+        showHint();
+        updateHint(el.swiper);
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(el);
+  }
+
+  scheduleHint();
+
+  isMobile.addEventListener('change', () => {
+    initSwiper();
+
+    if (!isMobile.matches) return;
+
+    if (hintPlayed) {
+      updateHint(el.swiper);
+    } else {
+      scheduleHint();
+    }
+  });
+
+  hint?.addEventListener('click', () => el?.swiper?.slideNext());
 </script>
