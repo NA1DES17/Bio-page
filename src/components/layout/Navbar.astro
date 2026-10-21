@@ -14,29 +14,56 @@ const { currentPath = '' } = Astro.props;
 const settings = SITE_SETTINGS.navbar;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-surface-container overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-surface-container">
   <Container>
-    <nav class="relative flex items-center justify-between h-16 sm:h-20" aria-label="Navegación principal">
-      <a href="/" class="flex items-center flex-1 justify-center md:flex-initial md:justify-start" aria-label={SITE.name}>
-        <img src="/logo_nomb.webp" alt={SITE.name} class="w-64 h-auto sm:w-auto sm:h-12" />
+    <nav class="flex items-center gap-4 h-16 sm:h-20" aria-label="Navegación principal">
+      <a href="/" class="flex items-center shrink-0" aria-label={SITE.name}>
+        <img src="/logo_nomb.webp" alt={SITE.name} class="h-9 xl:h-10 w-auto max-w-[150px] xl:max-w-[200px] object-contain object-left" />
       </a>
 
       <!-- Desktop Nav -->
-      <ul class="hidden md:flex items-center gap-1" role="list">
+      <ul class="hidden xl:flex items-center gap-1 ml-auto" role="list">
         {
           HEADER_NAV.map((item) => (
-            <li>
+            <li class="relative group">
               <a
                 href={item.href}
                 class:list={[
-                  'px-3 py-2 text-sm rounded-default transition-colors duration-200 font-body',
+                  'px-2 lg:px-3 py-2 text-sm rounded-default transition-colors duration-200 font-body inline-flex items-center gap-1 whitespace-nowrap',
                   currentPath === item.href || currentPath.startsWith(item.href + '/')
                     ? 'text-primary bg-primary/10'
                     : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container',
                 ]}
               >
                 {item.label}
+                {item.children && item.children.length > 0 && (
+                  <svg class="w-3 h-3 opacity-60 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                )}
               </a>
+              {item.children && item.children.length > 0 && (
+                <ul
+                  class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 absolute left-0 top-full pt-2 transition-all duration-150 z-50"
+                  role="list"
+                >
+                  <li class="min-w-56 py-2 bg-surface border border-surface-container-high rounded-default shadow-lg">
+                    {item.children.map((child) => (
+                      <a
+                        href={child.href}
+                        class:list={[
+                          'block px-4 py-2 text-sm font-body transition-colors whitespace-nowrap',
+                          currentPath === child.href || currentPath.startsWith(child.href + '/')
+                            ? 'text-primary bg-primary/10'
+                            : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container',
+                        ]}
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </li>
+                </ul>
+              )}
             </li>
           ))
         }
@@ -45,7 +72,7 @@ const settings = SITE_SETTINGS.navbar;
       <!-- Desktop CTA -->
       <a
         href={settings.cta.href}
-        class="hidden md:inline-flex items-center justify-center gap-2 font-body font-medium rounded-full px-6 py-3 text-base bg-primary text-on-primary hover:bg-primary-container active:bg-primary-fixed-dim transition-all duration-300 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        class="hidden xl:inline-flex items-center justify-center gap-2 font-body font-medium rounded-full px-5 py-3 text-sm bg-primary text-on-primary hover:bg-primary-container active:bg-primary-fixed-dim transition-all duration-300 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary shrink-0 whitespace-nowrap"
       >
         {settings.cta.label}
         <Icon name="arrow-right" size="sm" />
@@ -53,7 +80,7 @@ const settings = SITE_SETTINGS.navbar;
 
       <!-- Mobile Menu Toggle -->
       <button
-        class="md:hidden absolute right-0 p-2 text-on-surface-variant hover:text-on-surface transition-colors"
+        class="xl:hidden ml-auto p-2 text-on-surface-variant hover:text-on-surface transition-colors"
         aria-label="Abrir menú"
         aria-expanded="false"
         data-mobile-menu-toggle
@@ -62,11 +89,13 @@ const settings = SITE_SETTINGS.navbar;
         <span data-menu-icon-close class="hidden"><Icon name="close" /></span>
       </button>
     </nav>
+  </Container>
 
-    <!-- Mobile Menu Panel -->
-    <div class="md:hidden hidden bg-surface border-t border-surface-container" data-mobile-menu>
-      <div class="py-4 space-y-1 px-4 sm:px-8">
-        {HEADER_NAV.map((item) => (
+  <!-- Mobile Menu Panel -->
+  <div class="xl:hidden hidden bg-surface border-t border-surface-container" data-mobile-menu>
+    <div class="py-4 space-y-1 px-4 sm:px-8">
+      {HEADER_NAV.map((item) => (
+        <div>
           <a
             href={item.href}
             class:list={[
@@ -78,10 +107,27 @@ const settings = SITE_SETTINGS.navbar;
           >
             {item.label}
           </a>
-        ))}
-      </div>
+          {item.children && item.children.length > 0 && (
+            <div class="ml-4">
+              {item.children.map((child) => (
+                <a
+                  href={child.href}
+                  class:list={[
+                    'block px-4 py-2 text-xs font-body rounded-default transition-colors duration-200',
+                    currentPath === child.href || currentPath.startsWith(child.href + '/')
+                      ? 'text-primary bg-primary/10'
+                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container',
+                  ]}
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
     </div>
-  </Container>
+  </div>
 </header>
 
 <script>

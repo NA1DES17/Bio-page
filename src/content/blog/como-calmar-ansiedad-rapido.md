@@ -2,7 +2,7 @@
 title: "Cómo calmar la ansiedad rápido: 10 técnicas que funcionan"
 description: "Aprendé técnicas efectivas para calmar la ansiedad en momentos de crisis. Ejercicios prácticos de respiración, grounding y regulación emocional."
 publishedDate: 2026-05-20
-author: "Mariana"
+author: "Melisa Solange Faria"
 category: "ansiedad"
 tags: ["ansiedad", "calmar ansiedad", "técnicas", "respiración", "grounding"]
 featured: true

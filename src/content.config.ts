@@ -9,7 +9,7 @@ const blog = defineCollection({
       description: z.string(),
       publishedDate: z.date(),
       updatedDate: z.date().optional(),
-      author: z.string().default('Mariana'),
+      author: z.string().default('Melisa Solange Faria'),
       category: z.enum([
         'biodescodificacion',
         'ansiedad',

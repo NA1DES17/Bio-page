@@ -71,7 +71,7 @@ if (extraSchema) {
 
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" />
 
     <!-- Preload fonts -->
     <link
@@ -83,7 +83,7 @@ if (extraSchema) {
     />
     <link
       rel="preload"
-      href="/fonts/libre-caslon-text-variable.woff2"
+      href="/fonts/libre-caslon-text-regular.woff2"
       as="font"
       type="font/woff2"
       crossorigin="anonymous"
@@ -93,6 +93,22 @@ if (extraSchema) {
     {schemas.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
+
+    <!-- Analytics (GA4) — solo si hay ID configurado en src/config/site.ts -->
+    {
+      SITE.analytics.googleAnalyticsId && (
+        <>
+          <script
+            is:inline
+            src={`https://www.googletagmanager.com/gtag/js?id=${SITE.analytics.googleAnalyticsId}`}
+          />
+          <script
+            is:inline
+            set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${SITE.analytics.googleAnalyticsId}');`}
+          />
+        </>
+      )
+    }
 
     <slot />
   </head>

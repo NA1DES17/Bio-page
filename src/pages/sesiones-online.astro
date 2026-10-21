@@ -5,6 +5,7 @@ import FAQSection from '@components/sections/FAQSection.astro';
 import CTASection from '@components/sections/CTASection.astro';
 import ContactSection from '@components/sections/ContactSection.astro';
 import { SERVICES, SESSION_PROCESS, PRICING } from '@data/services';
+import { SITE } from '@config/site';
 import { FAQS_SESIONES } from '@data/content';
 import { buildFAQSchema, buildServiceSchema } from '@utils/metadata';
 
@@ -15,7 +16,7 @@ const breadcrumbs = [
 ---
 
 <BaseLayout
-  title="Sesiones de Biodescodificación Online — Alma en Calma"
+  title="Sesiones de Biodescodificación Online en Argentina"
   description="Sesiones de biodescodificación online en Argentina. Acompañamiento personalizado para liberar bloqueos emocionales desde la comodidad de tu hogar."
   currentPath="/sesiones-online"
   openGraph={{
@@ -62,16 +63,18 @@ const breadcrumbs = [
                 Modalidad: Online por videollamada
               </li>
             </ul>
-            <p class="font-heading text-2xl text-primary mb-4">
-              ${typeof PRICING[service.slug] !== 'undefined' ? PRICING[service.slug].amount : ''}
-              <span class="text-sm text-on-surface-variant font-body"> {typeof PRICING[service.slug] !== 'undefined' ? PRICING[service.slug].currency : ''}</span>
+            <p class="font-heading text-2xl text-primary mb-3">
+              ${typeof PRICING[service.slug] !== 'undefined' ? Number(PRICING[service.slug].arsAmount).toLocaleString('es-AR') : ''}
+              <span class="text-sm text-on-surface-variant font-body"> ARS</span>
             </p>
             <p class="text-xs text-on-surface-variant mb-6">{typeof PRICING[service.slug] !== 'undefined' ? PRICING[service.slug].description : ''}</p>
             <a
-              href="/contacto"
+              href={`https://wa.me/${SITE.authorPhone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola, quiero reservar una sesión de biodescodificación. ¿Me contás los pasos y medios de pago?')}`}
+              target="_blank"
+              rel="noopener"
               class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-on-primary font-medium rounded-full hover:bg-primary-container transition-all duration-300 text-sm"
             >
-              Reservar sesión
+              Reservar sesión por WhatsApp
             </a>
           </div>
         ))}

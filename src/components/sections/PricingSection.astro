@@ -2,6 +2,9 @@
 import Container from '@components/ui/Container.astro';
 import { getButtonClasses } from '@components/ui/Button.tsx';
 import Icon from '@components/ui/Icon.astro';
+import { PRICING } from '@data/services';
+
+const session = PRICING['sesion-individual'];
 ---
 
 <section class="section-padding overflow-x-hidden" aria-label="Sesiones online">
@@ -11,12 +14,15 @@ import Icon from '@components/ui/Icon.astro';
     <div class="mt-10 grid sm:grid-cols-2 gap-8 text-center">
       <div class="rounded-2xl border border-surface-container-high bg-surface p-8">
         <Icon name="hourglass" size="lg" class="mb-3 text-primary" />
-        <p class="text-3xl font-heading text-on-surface">90 Min</p>
+        <p class="text-3xl font-heading text-on-surface">{session.duration}</p>
       </div>
 
       <div class="rounded-2xl border border-surface-container-high bg-surface p-8">
         <Icon name="dollar" size="lg" class="mb-3 text-primary" />
-        <p class="text-3xl font-heading text-on-surface">35.000 ARS</p>
+        <p class="text-3xl font-heading text-on-surface">
+          ${Number(session.arsAmount).toLocaleString('es-AR')}
+          <span class="text-xl"> ARS</span>
+        </p>
       </div>
     </div>
 

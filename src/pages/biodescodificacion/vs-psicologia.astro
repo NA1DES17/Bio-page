@@ -1,0 +1,157 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import FAQSection from '@components/sections/FAQSection.astro';
+import { buildFAQSchema } from '@utils/metadata';
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Biodescodificación', path: '/biodescodificacion/que-es' },
+  { label: 'Biodescodificación y psicología', path: '/biodescodificacion/vs-psicologia' },
+];
+
+const faqs = [
+  {
+    question: '¿La biodescodificación reemplaza a la psicología?',
+    answer:
+      'No. La psicología es una ciencia de la salud mental con formación profesional regulada y técnicas basadas en evidencia. La biodescodificación es una práctica complementaria sin respaldo científico de eficacia. Si atravesás ansiedad intensa, depresión o una crisis, lo indicado es consultar con un psicólogo o psiquiatra matriculado; la biodescodificación puede acompañar ese proceso, nunca sustituirlo.',
+  },
+  {
+    question: '¿Puedo hacer biodescodificación y terapia psicológica al mismo tiempo?',
+    answer:
+      'Sí, muchas personas combinan ambos espacios. Lo importante es que estén informadas/os: contale a tu psicóloga/o que también hacés biodescodificación, y trabajá siempre desde el consentimiento y la transparencia.',
+  },
+  {
+    question: '¿Qué temas conviene trabajar con biodescodificación?',
+    answer:
+      'Procesos de autoconocimiento, la búsqueda del posible origen emocional de molestias o patrones repetitivos, y momentos en los que sentís que algo te pide atención. Siempre como complemento y sin dejar de lado el seguimiento profesional de tu salud.',
+  },
+];
+---
+
+<BaseLayout
+  title="Biodescodificación y psicología: diferencias"
+  description="Diferencias entre biodescodificación y psicología: enfoque, formación y para qué sirve cada una. Cómo se complementan sin reemplazar tratamientos."
+  currentPath="/biodescodificacion/vs-psicologia"
+  canonical="/biodescodificacion/vs-psicologia"
+  openGraph={{
+    title: 'Biodescodificación y psicología: diferencias',
+    description:
+      'Enfoque, formación y usos de cada práctica comparados en una tabla clara, con la mirada honesta sobre qué es y qué no es la biodescodificación.',
+    ogType: 'article',
+  }}
+  schema={[buildFAQSchema(faqs)]}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Comparativa</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
+        Biodescodificación y psicología: diferencias y cómo se complementan
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed">
+        Son dos prácticas distintas con objetivos distintos. Entender qué hace cada una te ayuda a
+        elegir mejor —o a combinarlas con los pies en la tierra.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm sm:text-base border-collapse min-w-[560px]">
+          <thead>
+            <tr class="border-b border-surface-container-high">
+              <th class="text-left py-3 pr-4 font-semibold text-on-surface w-1/4">Dimensión</th>
+              <th class="text-left py-3 pr-4 font-semibold text-on-surface w-2/5">Psicología</th>
+              <th class="text-left py-3 font-semibold text-on-surface">Biodescodificación</th>
+            </tr>
+          </thead>
+          <tbody class="text-on-surface-variant align-top">
+            <tr class="border-b border-surface-container-high/60">
+              <td class="py-3 pr-4 font-semibold text-on-surface">Naturaleza</td>
+              <td class="py-3 pr-4">Ciencia de la salud mental, con método y respaldo académico</td>
+              <td class="py-3">Práctica complementaria de medicina alternativa</td>
+            </tr>
+            <tr class="border-b border-surface-container-high/60">
+              <td class="py-3 pr-4 font-semibold text-on-surface">Enfoque</td>
+              <td class="py-3 pr-4">Evalúa el padecimiento y trabaja con técnicas basadas en evidencia</td>
+              <td class="py-3">Propone que cada síntoma guarda un conflicto emocional y trabaja la autoindagación</td>
+            </tr>
+            <tr class="border-b border-surface-container-high/60">
+              <td class="py-3 pr-4 font-semibold text-on-surface">Formación</td>
+              <td class="py-3 pr-4">Licenciadas/os en Psicología con matrícula profesional</td>
+              <td class="py-3">Formación privada en escuelas de la disciplina; sin habilitación oficial</td>
+            </tr>
+            <tr class="border-b border-surface-container-high/60">
+              <td class="py-3 pr-4 font-semibold text-on-surface">Regulación</td>
+              <td class="py-3 pr-4">Profesión regulada por ley</td>
+              <td class="py-3">Sin regulación estatal</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-semibold text-on-surface">Para qué la eligen</td>
+              <td class="py-3 pr-4">Tratamiento de ansiedad, depresión, crisis y otros cuadros de salud mental</td>
+              <td class="py-3">Proceso de autoconocimiento y acompañamiento emocional complementario</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-10 p-6 rounded-default bg-surface-container border border-surface-container-high">
+        <p class="font-semibold text-on-surface mb-2">Importante</p>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          La biodescodificación no cuenta con respaldo científico que demuestre su eficacia como
+          tratamiento y no reemplaza la atención psicológica ni médica. Si atravesás una crisis o tu
+          malestar interfiere con tu día a día, consultá con un profesional de la salud mental.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container-narrow space-y-6 text-base sm:text-lg text-on-surface-variant leading-relaxed">
+      <h2 class="text-2xl font-heading text-on-surface mt-8 mb-4">¿Se pueden combinar?</h2>
+      <p>
+        Sí. Muchas personas sostienen un espacio de terapia psicológica y suman sesiones de
+        biodescodificación como un lugar de indagación emocional y autoconocimiento. La clave es
+        la transparencia: informá a tu psicóloga/o y no suspendas ni modifiques tratamientos por
+        cuenta propia.
+      </p>
+      <p>
+        Si lo que buscás es un proceso terapéutico para un cuadro de salud mental, lo indicado es
+        una psicóloga/o matriculada/o. Si lo que buscás es otra mirada para acompañar lo que te
+        pasa, la biodescodificación puede ser ese espacio —siempre complementaria.
+      </p>
+
+      <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">Seguí explorando</h2>
+      <ul class="space-y-2 text-base">
+        <li>
+          <a href="/biodescodificacion/que-es/" class="text-primary underline">¿Qué es la biodescodificación?</a>
+          — la guía completa para empezar.
+        </li>
+        <li>
+          <a href="/biodescodificacion/ansiedad/" class="text-primary underline">Biodescodificación para la ansiedad</a>
+          — cómo aborda este enfoque la ansiedad.
+        </li>
+        <li>
+          <a href="/biodescodificacion/argentina/" class="text-primary underline">Biodescodificación en Argentina</a>
+          — sesiones online en todo el país.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <FAQSection
+    eyebrow="FAQ"
+    title="Preguntas frecuentes sobre biodescodificación y psicología"
+    faqs={faqs}
+  />
+
+  <CTASection
+    eyebrow="¿Querés conversarlo?"
+    title="Escribime y te oriento sin compromiso"
+    subtitle="Si no sabés qué espacio te sirve más, lo charlamos juntas/os."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+    variant="accent"
+  />
+</BaseLayout>

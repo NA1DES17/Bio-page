@@ -2,6 +2,8 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import CTASection from '@components/sections/CTASection.astro';
 import { PRACTITIONER } from '@data/about';
+import { buildPersonSchema } from '@utils/metadata';
+import { SITE } from '@config/site';
 
 const breadcrumbs = [
   { label: 'Inicio', path: '/' },
@@ -10,13 +12,23 @@ const breadcrumbs = [
 ---
 
 <BaseLayout
-  title="Sobre Mí — Alma en Calma"
+  title="Sobre Mí"
   description="Conocé a Melisa Solange Faría, profesional certificada en Biodescodificación. Descubrí su enfoque, formación y compromiso con tu bienestar emocional."
   currentPath="/sobre-mi"
   openGraph={{
     title: 'Sobre Mí — Alma en Calma',
     description: 'Conocé a Melisa Solange Faría, profesional certificada en Biodescodificación. Su enfoque, formación y compromiso con tu bienestar emocional.',
   }}
+  schema={[
+    buildPersonSchema({
+      name: PRACTITIONER.fullName,
+      jobTitle: PRACTITIONER.title,
+      description: PRACTITIONER.shortBio,
+      url: '/sobre-mi',
+      image: '/about_me.jpeg',
+      sameAs: [`https://instagram.com/${SITE.social.instagram.replace('@', '')}`],
+    }),
+  ]}
   breadcrumbs={breadcrumbs}
 >
   <section class="section-padding pb-0">

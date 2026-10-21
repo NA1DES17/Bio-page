@@ -20,7 +20,7 @@ export const SERVICES: Service[] = [
     metaDescription:
       'Sesión individual de biodescodificación online. Trabajamos el origen emocional de tus conflictos en un espacio seguro y personalizado.',
     keywords: ['sesión biodescodificación', 'biodescodificación individual', 'terapia emocional'],
-    duration: '60-75 min',
+    duration: '90 min',
     modality: 'online',
     featured: true,
   },
@@ -41,16 +41,16 @@ export const SERVICES: Service[] = [
 
 export const PRICING = {
   'sesion-individual': {
-    amount: 45,
-    currency: 'USD',
     label: 'Sesión individual',
-    description: 'Sesión única de 60-75 minutos',
+    duration: '90 min',
+    arsAmount: 120000,
+    description: 'Sesión única de 90 minutos',
   },
   'acompanamiento-terapeutico': {
-    amount: 120,
-    currency: 'USD',
     label: 'Paquete 3 sesiones',
-    description: 'Tres sesiones con acompañamiento continuo',
+    duration: '3 sesiones de 90 min',
+    arsAmount: 324000,
+    description: 'Tres sesiones con acompañamiento continuo (10% de descuento)',
   },
 } as const;
 

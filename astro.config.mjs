@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const SITE_URL = 'https://sereneroots.com.ar';
+const SITE_URL = 'https://almaencalma.com.ar';
 
 export default defineConfig({
   site: SITE_URL,

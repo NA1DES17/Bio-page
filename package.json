@@ -1,8 +1,8 @@
 {
-  "name": "serene-roots",
+  "name": "alma-en-calma",
   "type": "module",
   "version": "0.1.0",
-  "description": "Biodescodificación y acompañamiento emocional — Serene Roots",
+  "description": "Biodescodificación y acompañamiento emocional — Alma en Calma",
   "engines": {
     "node": ">=22.12.0"
   },

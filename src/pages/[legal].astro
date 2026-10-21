@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('legal');
+  return pages.map((page) => ({
+    params: { legal: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: page.data.title, path: `/${page.id}` },
+];
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.description}
+  currentPath={`/${page.id}`}
+  canonical={`/${page.id}`}
+  openGraph={{
+    title: page.data.title,
+    description: page.data.description,
+    ogType: 'article',
+    modifiedTime: page.data.updatedDate.toISOString(),
+  }}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Legal</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-4">
+        {page.data.title}
+      </h1>
+      <p class="text-sm text-on-surface-variant/80">
+        Última actualización: {page.data.updatedDate.toLocaleDateString('es-AR')}
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding pt-8">
+    <div class="container-narrow legal-content text-on-surface-variant leading-relaxed">
+      <Content />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-content :global(h2) {
+    font-family: var(--font-heading);
+    color: var(--color-on-surface);
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .legal-content :global(ul),
+  .legal-content :global(ol) {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .legal-content :global(ul) {
+    list-style: disc;
+  }
+
+  .legal-content :global(ol) {
+    list-style: decimal;
+  }
+
+  .legal-content :global(strong) {
+    color: var(--color-on-surface);
+    font-weight: 600;
+  }
+
+  .legal-content :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>

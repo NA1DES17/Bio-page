@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* Tipografías auto-hospedadas (subset latin, Google Fonts) */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/manrope-variable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Libre Caslon Text";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/libre-caslon-text-regular.woff2") format("woff2");
+}
+
 @theme {
   --color-surface: #f8fbf1;
   --color-surface-dim: #d8dbd2;

@@ -2,6 +2,10 @@ import { SITE, SEO_DEFAULTS } from '@config/site';
 import type { SEOMetadata, BreadcrumbItem, OpenGraph } from '@config/seo';
 
 export function formatMetaTitle(title: string): string {
+  // Evita duplicar la marca cuando el título ya la incluye
+  if (title.includes(SITE.name)) {
+    return title;
+  }
   return `${title} ${SEO_DEFAULTS.titleSeparator} ${SITE.name}`;
 }
 
@@ -101,6 +105,33 @@ export function buildArticleSchema(data: {
     datePublished: data.datePublished,
     dateModified: data.dateModified ?? data.datePublished,
     ...(data.image && { image: data.image }),
+  };
+}
+
+export function buildPersonSchema(data: {
+  name: string;
+  jobTitle?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  sameAs?: string[];
+}) {
+  const toAbsolute = (value: string) =>
+    value.startsWith('http') ? value : `${SITE.url}${value}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: data.name,
+    ...(data.jobTitle && { jobTitle: data.jobTitle }),
+    ...(data.description && { description: data.description }),
+    ...(data.url && { url: toAbsolute(data.url) }),
+    ...(data.image && { image: toAbsolute(data.image) }),
+    ...(data.sameAs && { sameAs: data.sameAs }),
+    worksFor: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+    },
   };
 }
 

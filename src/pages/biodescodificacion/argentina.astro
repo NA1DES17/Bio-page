@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTASection from '@components/sections/CTASection.astro';
+import FAQSection from '@components/sections/FAQSection.astro';
+import ProcessSection from '@components/sections/ProcessSection.astro';
+import { PRICING, SESSION_PROCESS } from '@data/services';
+import { buildFAQSchema, buildServiceSchema } from '@utils/metadata';
+
+const session = PRICING['sesion-individual'];
+const pack = PRICING['acompanamiento-terapeutico'];
+const sessionPrice = Number(session.arsAmount).toLocaleString('es-AR');
+const packPrice = Number(pack.arsAmount).toLocaleString('es-AR');
+
+const breadcrumbs = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Biodescodificación', path: '/biodescodificacion/que-es' },
+  { label: 'En Argentina', path: '/biodescodificacion/argentina' },
+];
+
+const faqs = [
+  {
+    question: '¿Puedo hacer una sesión de biodescodificación desde cualquier provincia?',
+    answer:
+      'Sí. Las sesiones son por videollamada y atiendo personas de Buenos Aires, Rosario, Córdoba, Mendoza, Santa Fe y todo el país. Solo necesitás conexión a internet estable y un espacio tranquilo donde te sientas cómoda/o.',
+  },
+  {
+    question: '¿Cuánto cuesta una sesión de biodescodificación en Argentina?',
+    answer: `La sesión individual de ${session.duration} tiene un valor de $${sessionPrice} ARS y el paquete de 3 sesiones con acompañamiento continuo, $${packPrice} ARS (10% de descuento).`,
+  },
+  {
+    question: '¿Cómo pago la sesión desde Argentina?',
+    answer:
+      'Acepto transferencia bancaria, Mercado Pago y PayPal. El medio de pago se coordina al momento de reservar tu sesión.',
+  },
+  {
+    question: '¿Cuántas sesiones de biodescodificación se necesitan?',
+    answer:
+      'No hay una respuesta única: depende de tu historia y del motivo de consulta. Algunas personas encuentran claridad importante ya en la primera sesión; otros procesos profundizan en un promedio de 3 a 6 encuentros. Siempre decidís vos cuánto continuar.',
+  },
+  {
+    question: '¿La biodescodificación reemplaza a la medicina o a la psicología?',
+    answer:
+      'No. La biodescodificación es una práctica complementaria: no reemplaza ni posterga diagnósticos ni tratamientos médicos o psicológicos. Si estás en tratamiento, mantenelo y usá las sesiones como un espacio de acompañamiento adicional.',
+  },
+];
+---
+
+<BaseLayout
+  title="Biodescodificación en Argentina — Sesiones online"
+  description="Sesiones de biodescodificación online en Argentina: atiendo desde Buenos Aires, Córdoba, Mendoza o donde estés. Sesión de 90 minutos. Agendá tu turno."
+  currentPath="/biodescodificacion/argentina"
+  canonical="/biodescodificacion/argentina"
+  openGraph={{
+    title: 'Biodescodificación en Argentina — Sesiones online',
+    description:
+      'Sesiones de biodescodificación online para personas de todo el país. Acompañamiento personalizado desde tu propio espacio.',
+    ogType: 'article',
+  }}
+  schema={[
+    buildFAQSchema(faqs),
+    buildServiceSchema({
+      name: 'Sesiones de biodescodificación online en Argentina',
+      description:
+        'Acompañamiento de biodescodificación online para personas de todo el país. Sesión individual de 90 minutos y paquetes de acompañamiento continuo.',
+      url: '/biodescodificacion/argentina',
+    }),
+  ]}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section-padding pb-0">
+    <div class="container-narrow">
+      <p class="eyebrow mb-4">Biodescodificación en Argentina</p>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-heading leading-tight text-balance mb-6">
+        Sesiones de biodescodificación online en todo el país
+      </h1>
+      <p class="text-lg text-on-surface-variant leading-relaxed">
+        Acompañamiento personalizado para trabajar el origen emocional de tus síntomas, desde
+        Buenos Aires, Rosario, Córdoba, Mendoza o donde estés. Sin traslados, desde tu propio
+        espacio y con la misma profundidad que en un espacio presencial.
+      </p>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="¿Cómo funciona?"
+    title="Tu camino en 3 pasos"
+    subtitle="Simple, claro y desde cualquier provincia."
+    steps={SESSION_PROCESS}
+  />
+
+  <section class="section-padding pt-0">
+    <div class="container-narrow space-y-6 text-base sm:text-lg text-on-surface-variant leading-relaxed">
+      <h2 class="text-2xl font-heading text-on-surface mt-8 mb-4">
+        Online o presencial: ¿dónde hacer biodescodificación en Argentina?
+      </h2>
+      <p>
+        En las grandes ciudades —sobre todo en Buenos Aires— existen espacios presenciales de
+        biodescodificación. La modalidad online llegó para quedarse y hoy es una de las formas más
+        elegidas: te ahorra traslados, te permite elegir horarios y te ofrece la intimidad de tu
+        propio espacio, donde las conversaciones difíciles se sostienen mejor.
+      </p>
+      <p>
+        Por eso las sesiones de Alma en Calma son 100% online: no importa en qué provincia vivas,
+        el proceso es el mismo y el acompañamiento, igual de personalizado.
+      </p>
+
+      <h2 class="text-2xl font-heading text-on-surface mt-12 mb-4">¿Para quién es?</h2>
+      <p>
+        Para personas que sienten que algo en su cuerpo o en su día a día les pide atención y
+        quieren explorar el posible origen emocional; para quienes atraviesan ansiedad, estrés,
+        bloqueos repetitivos o dueltos; y para quien simplemente quiere entenderse mejor. No hace
+        falta saber nada previo de la disciplina.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding pt-0">
+    <div class="container-narrow">
+      <div class="grid gap-8 sm:grid-cols-2">
+        <div class="p-8 rounded-default bg-surface-container border border-surface-container-high text-center">
+          <p class="eyebrow mb-3">{session.label}</p>
+          <p class="text-4xl font-heading text-primary">
+            ${sessionPrice} <span class="text-xl text-on-surface-variant">ARS</span>
+          </p>
+          <p class="mt-2 text-sm text-on-surface-variant">{session.duration} · online por videollamada</p>
+        </div>
+        <div class="p-8 rounded-default bg-surface-container border border-surface-container-high text-center">
+          <p class="eyebrow mb-3">{pack.label}</p>
+          <p class="text-4xl font-heading text-primary">
+            ${packPrice} <span class="text-xl text-on-surface-variant">ARS</span>
+          </p>
+          <p class="mt-2 text-sm text-on-surface-variant">{pack.duration} · 10% de descuento</p>
+        </div>
+      </div>
+      <p class="mt-6 text-sm text-on-surface-variant text-center">
+        Pagá por transferencia bancaria, Mercado Pago o PayPal. Coordinamos día y horario por WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <FAQSection
+    eyebrow="FAQ"
+    title="Preguntas frecuentes sobre biodescodificación en Argentina"
+    faqs={faqs}
+  />
+
+  <CTASection
+    eyebrow="¿Lista/o para empezar?"
+    title="Agendá tu sesión desde donde estés"
+    subtitle="Escribime y coordinamos el día y horario que mejor te quede."
+    cta={{ label: 'Agendar sesión', href: '/sesiones-online' }}
+    variant="accent"
+  />
+</BaseLayout>

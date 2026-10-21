@@ -2,7 +2,7 @@
 title: "Biodescodificación para principiantes: todo lo que necesitas saber"
 description: "Descubrí qué es la biodescodificación, cómo funciona y cómo puede ayudarte a entender el origen emocional de tus síntomas. Una guía para quienes dan sus primeros pasos."
 publishedDate: 2026-05-22
-author: "Mariana"
+author: "Melisa Solange Faria"
 category: "biodescodificacion"
 tags: ["biodescodificación", "principiantes", "guía", "emociones", "sanación"]
 featured: true

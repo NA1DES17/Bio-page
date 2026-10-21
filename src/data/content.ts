@@ -67,7 +67,7 @@ export const FAQS_SESIONES = [
   {
     question: '¿Cuánto dura una sesión?',
     answer:
-      'Cada sesión tiene una duración aproximada de 60 a 75 minutos. Es un espacio completo para explorar y trabajar el tema que traigas.',
+      'Cada sesión individual dura aproximadamente 90 minutos. Es un espacio completo para explorar y trabajar el tema que traigas.',
   },
   {
     question: '¿Qué necesito para la sesión online?',
@@ -78,6 +78,16 @@ export const FAQS_SESIONES = [
     question: '¿Cómo pago la sesión?',
     answer:
       'Acepto transferencia bancaria, Mercado Pago y PayPal. El pago se coordina al momento de reservar tu sesión.',
+  },
+  {
+    question: '¿Cuántas sesiones de biodescodificación se necesitan?',
+    answer:
+      'No hay una respuesta única: depende de tu historia y del motivo de consulta. Algunas personas encuentran claridad importante ya en la primera sesión; otros procesos profundizan en un promedio de 3 a 6 encuentros. En la primera sesión lo evaluamos juntas/os y siempre decidís vos cuánto continuar.',
+  },
+  {
+    question: '¿Cuánto cuesta una sesión de biodescodificación?',
+    answer:
+      'La sesión individual (90 minutos) tiene un valor de $120.000 ARS. El paquete de 3 sesiones con acompañamiento continuo tiene un valor de $324.000 ARS (10% de descuento). Podés pagar por transferencia bancaria, Mercado Pago o PayPal.',
   },
 ];
 
@@ -95,6 +105,6 @@ export const FAQS_BIODESCODIFICACION = [
   {
     question: '¿Tiene base científica?',
     answer:
-      'La biodescodificación se basa en principios de la psiconeuroinmunología y la epigenética, que estudian cómo las emociones y el estrés impactan en nuestra biología. Si bien no es una disciplina médica, cada vez más profesionales de la salud integran esta mirada en sus abordajes.',
+      'La biodescodificación no cuenta con respaldo científico que demuestre su eficacia como tratamiento, y no está reconocida por la medicina convencional. Lo que sí está estudiado es la relación entre emociones, estrés y salud (psiconeuroinmunología), y ese es el terreno donde se apoya este enfoque. Por eso la recomendación es clara: usala como complemento y no postergues ni suspendas consultas ni tratamientos médicos o psicológicos.',
   },
 ];

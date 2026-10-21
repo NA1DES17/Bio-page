@@ -15,6 +15,10 @@ export const SITE = {
     instagram: '@almaencalma',
     whatsapp: '+5491123456789',
   },
+  /** ID de medición de GA4 (formato G-XXXXXXXX). Dejar vacío hasta tenerlo. */
+  analytics: {
+    googleAnalyticsId: '',
+  },
 } as const;
 
 export const BRAND = {
